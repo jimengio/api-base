@@ -1,12 +1,12 @@
 import { IErrorHandler } from "./types";
 import { BuiltinApiErrorCode } from "./codes";
-import { JimuApisEventBus, JimuApisEvent } from "./event-bus";
+import { JimuApisEventBus, EJimuApiEvent } from "./event-bus";
 
 export const defaultErrorHandler: IErrorHandler = {
   [BuiltinApiErrorCode.Unauthorized]: () => {
     // 需要调用
     // gotoSignin(signinPath, location.href);
-    JimuApisEventBus.emit(JimuApisEvent.ErrorGotoSignin);
+    JimuApisEventBus.emit(EJimuApiEvent.ErrorGotoSignin);
   },
 };
 
@@ -24,7 +24,7 @@ export const defaultStatusCodeErrorHandler: IErrorHandler = {
   [BuiltinApiErrorCode.Unauthorized]: () => {
     // 需要调用
     // gotoSignin(signinPath, location.href);
-    JimuApisEventBus.emit(JimuApisEvent.ErrorGotoSignin);
+    JimuApisEventBus.emit(EJimuApiEvent.ErrorGotoSignin);
   },
 };
 

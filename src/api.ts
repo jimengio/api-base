@@ -1,10 +1,10 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse, Method } from "axios";
-import { ApiError, ApiOption } from "./types";
+import { ApiError, IJimuApiOption } from "./types";
 import { globalErrorMessages, globalStatusCodeErrorMessages } from "./messages";
 import { errorHandler, statusCodeErrorHandler } from "./handlers";
 import { UrlModel } from "@jimengio/url-model";
 import { showError } from "./show-error";
-import { JimuApisEventBus, JimuApisEvent } from "./event-bus";
+import { JimuApisEventBus, EJimuApiEvent } from "./event-bus";
 import Qs from "qs";
 
 const instance = axios.create();
@@ -14,13 +14,13 @@ let pendingRequestCount = 0;
 
 function notifyRequestStart() {
   pendingRequestCount++;
-  JimuApisEventBus.emit(JimuApisEvent.Inc);
+  JimuApisEventBus.emit(EJimuApiEvent.Inc);
 }
 
 function notifyRequestDone() {
   pendingRequestCount--;
   if (pendingRequestCount === 0) {
-    JimuApisEventBus.emit(JimuApisEvent.Done);
+    JimuApisEventBus.emit(EJimuApiEvent.Done);
   }
 }
 
@@ -49,12 +49,12 @@ export function generateCancelToken() {
   return CancelToken.source();
 }
 
-const handleError = (err: ApiError, config?: ApiOption) => {
+const handleError = (err: ApiError, config?: IJimuApiOption) => {
   if (err.isUnauthorized) {
     // 原来有个调用, 去耦合
     // clearUserInfoCache();
 
-    JimuApisEventBus.emit(JimuApisEvent.ErrorUnauthorized);
+    JimuApisEventBus.emit(EJimuApiEvent.ErrorUnauthorized);
   }
 
   const code = err.code;
@@ -90,7 +90,7 @@ const handleError = (err: ApiError, config?: ApiOption) => {
   }
 };
 
-const rejectError = (error: AxiosError, config?: ApiOption) => {
+const rejectError = (error: AxiosError, config?: IJimuApiOption) => {
   const resp = error.response;
   const data = resp && resp.data;
   const code = (data && data.code) || 0;
@@ -108,7 +108,7 @@ const rejectError = (error: AxiosError, config?: ApiOption) => {
   return Promise.reject(apiError);
 };
 
-const handleSuccess = (resp: AxiosResponse, option: ApiOption) => {
+const handleSuccess = (resp: AxiosResponse, option: IJimuApiOption) => {
   const { isShowProgressBar = true } = option;
 
   if (isShowProgressBar) {
@@ -118,7 +118,7 @@ const handleSuccess = (resp: AxiosResponse, option: ApiOption) => {
   return resp.data;
 };
 
-const handleFailed = (error: AxiosError, option: ApiOption) => {
+const handleFailed = (error: AxiosError, option: IJimuApiOption) => {
   const { isShowProgressBar = true } = option;
 
   if (isShowProgressBar) {
@@ -128,7 +128,7 @@ const handleFailed = (error: AxiosError, option: ApiOption) => {
   return rejectError(error, option);
 };
 
-const beforeRequest = (method: Method, option: ApiOption) => {
+const beforeRequest = (method: Method, option: IJimuApiOption) => {
   option.url = option.url || option.endpoint;
   if (option.query) option.params = Object.assign({}, option.params, option.query);
   option.method = option.method || method;
@@ -140,7 +140,7 @@ const beforeRequest = (method: Method, option: ApiOption) => {
   }
 };
 
-const doRequest = async (method: Method, option: ApiOption) => {
+const doRequest = async (method: Method, option: IJimuApiOption) => {
   beforeRequest(method, option);
 
   try {
@@ -151,7 +151,7 @@ const doRequest = async (method: Method, option: ApiOption) => {
   }
 };
 
-export const get = async <T = any>(option: ApiOption): Promise<T> => {
+export const get = async <T = any>(option: IJimuApiOption): Promise<T> => {
   return doRequest("get", option);
 };
 
@@ -161,7 +161,7 @@ export const get = async <T = any>(option: ApiOption): Promise<T> => {
  * query: obj = {a: 1, b: 2} -> obj[a]=1&obj[b]=2
  * @param option
  */
-export const getWithNestedParams = async (option: ApiOption) => {
+export const getWithNestedParams = async (option: IJimuApiOption) => {
   option.paramsSerializer = function(params) {
     return Qs.stringify(params, {
       arrayFormat: "brackets",
@@ -172,15 +172,15 @@ export const getWithNestedParams = async (option: ApiOption) => {
   return doRequest("get", option);
 };
 
-export const post = async <T = any>(option: ApiOption): Promise<T> => {
+export const post = async <T = any>(option: IJimuApiOption): Promise<T> => {
   return doRequest("post", option);
 };
 
-export const put = async <T = any>(option: ApiOption): Promise<T> => {
+export const put = async <T = any>(option: IJimuApiOption): Promise<T> => {
   return doRequest("put", option);
 };
 
-export const del = async <T = any>(option: ApiOption): Promise<T> => {
+export const del = async <T = any>(option: IJimuApiOption): Promise<T> => {
   return doRequest("delete", option);
 };
 

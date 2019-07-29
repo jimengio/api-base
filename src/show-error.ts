@@ -1,6 +1,6 @@
 import { globalErrorMessages, globalStatusCodeErrorMessages } from "./messages";
 import { ApiError } from "./types";
-import { JimuApisEventBus, JimuApisEvent } from "./event-bus";
+import { JimuApisEventBus, EJimuApiEvent } from "./event-bus";
 
 export function showError(
   error: string | Error | ApiError,
@@ -23,7 +23,7 @@ export function showError(
     // 原来有个调用
     // message.error(errorHumanized);
 
-    JimuApisEventBus.emit(JimuApisEvent.ErrorMessage, errorHumanized);
+    JimuApisEventBus.emit(EJimuApiEvent.ErrorMessage, errorHumanized);
   }
 }
 

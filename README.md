@@ -12,9 +12,9 @@
 
 原先耦合的代码需要手动处理一遍, 搜则对应的逻辑会丢失:
 
-- 监听 `JimuApisEvent.ErrorUnauthorized` 事件, 调用 `clearUserInfoCache()`,
-- 监听 `JimuApisEvent.ErrorMessage` 事件, 调用 `message.error(errorHumanized)`,
-- 监听 `JimuApisEvent.ErrorGotoSignin` 调用 `gotoSignin(signinPath, location.href)`.
+- 监听 `EJimuApiEvent.ErrorUnauthorized` 事件, 调用 `clearUserInfoCache()`,
+- 监听 `EJimuApiEvent.ErrorMessage` 事件, 调用 `message.error(errorHumanized)`,
+- 监听 `EJimuApiEvent.ErrorGotoSignin` 调用 `gotoSignin(signinPath, location.href)`.
 
 ### Usages
 
@@ -44,9 +44,9 @@ addGloablErrorMessages({
 ##### 监听 API 特殊的事件:
 
 ```tsx
-import { JimuApisEvent } from "@jimengio/api-base";
+import { EJimuApiEvent } from "@jimengio/api-base";
 
-JimuApisEventBus.on(JimuApisEvent.ErrorMessage, (error: string) => {
+JimuApisEventBus.on(EJimuApiEvent.ErrorMessage, (error: string) => {
   console.error(error);
 });
 ```
@@ -64,7 +64,7 @@ changeApisLingual(EApisLangKind.enUS);
 展示网络加载进度(不精确):
 
 ```tsx
-import NetProgress from "@jimengio/api-base";
+import { NetProgress } from "@jimengio/api-base";
 
 <NetProgress />;
 ```

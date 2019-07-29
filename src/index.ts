@@ -1,8 +1,10 @@
 export { changeApisLingual, EApisLangKind } from "./lingual/index";
-export { JimuApisEvent, JimuApisEventBus } from "./utils/event-bus";
+export { EJimuApiEvent as JimuApisEvent, JimuApisEventBus } from "./event-bus";
 
 export { default as NetProgress } from "./component/net-progress";
 
-export { addGloablErrorMessages, addGlobalStatusCodeErrorMessages } from "./utils/messages";
+export { addGloablErrorMessages, addGlobalStatusCodeErrorMessages } from "./messages";
 
-export { get, post, put, del } from "./utils/api";
+export { get, post, put, del } from "./api";
+
+export { IErrorMessages } from "./types";
