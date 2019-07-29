@@ -1,5 +1,5 @@
 export { changeApisLingual, EApisLangKind } from "./lingual/index";
-export { EJimuApiEvent as JimuApisEvent, JimuApisEventBus } from "./event-bus";
+export { EJimuApiEvent, JimuApisEventBus } from "./event-bus";
 
 export { default as NetProgress } from "./component/net-progress";
 
