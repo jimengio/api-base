@@ -3,7 +3,7 @@ import { BuiltinApiErrorCode } from "./codes";
 
 export enum ApiErrorMessageId {}
 
-export interface IErrorMessage {
+export interface IErrorMessages {
   [key: number]: string | false;
 }
 
@@ -11,15 +11,15 @@ export interface IErrorHandler {
   [key: number]: ((err: ApiError) => void) | false;
 }
 
-export interface ApiOption extends AxiosRequestConfig {
+export interface IJimuApiOption extends AxiosRequestConfig {
   url?: string;
   /** 别名, 对应 url. 老代码主要使用的是 endpoint */
   endpoint?: string;
   query?: object;
   isAutoHandleError?: boolean;
   isShowProgressBar?: boolean;
-  errorMessage?: IErrorMessage;
-  statusCodeErrorMessage?: IErrorMessage;
+  errorMessage?: IErrorMessages;
+  statusCodeErrorMessage?: IErrorMessages;
   errorHandler?: IErrorHandler;
   statusCodeErrorHandler?: IErrorHandler;
 }

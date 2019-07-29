@@ -1,7 +1,7 @@
 import React from "react";
 import { css, cx } from "emotion";
 import { immerHelpers, ImmerStateFunc, MergeStateFunc } from "@jimengio/shared-utils";
-import { JimuApisEventBus, JimuApisEvent } from "../utils/event-bus";
+import { JimuApisEventBus, EJimuApiEvent } from "../event-bus";
 
 interface IProps {}
 
@@ -25,13 +25,13 @@ export default class NetProgress extends React.Component<IProps, IState> {
 
   componentDidMount() {
     // connect to API events
-    JimuApisEventBus.on(JimuApisEvent.Inc, this.incrementProgress);
-    JimuApisEventBus.on(JimuApisEvent.Done, this.completeProgress);
+    JimuApisEventBus.on(EJimuApiEvent.Inc, this.incrementProgress);
+    JimuApisEventBus.on(EJimuApiEvent.Done, this.completeProgress);
   }
 
   componentWillUnmount() {
-    JimuApisEventBus.removeListener(JimuApisEvent.Inc, this.incrementProgress);
-    JimuApisEventBus.removeListener(JimuApisEvent.Done, this.completeProgress);
+    JimuApisEventBus.removeListener(EJimuApiEvent.Inc, this.incrementProgress);
+    JimuApisEventBus.removeListener(EJimuApiEvent.Done, this.completeProgress);
   }
 
   render() {

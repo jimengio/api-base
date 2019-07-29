@@ -2,7 +2,7 @@ import EventEmitter from "eventemitter3";
 
 export let JimuApisEventBus = new EventEmitter();
 
-export enum JimuApisEvent {
+export enum EJimuApiEvent {
   Inc = "inc",
   Done = "done",
 

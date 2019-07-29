@@ -1,6 +1,6 @@
-import { IErrorMessage as IErrorMessages } from "./types";
+import { IErrorMessages } from "./types";
 import { BuiltinApiErrorCode } from "./codes";
-import { lingual } from "../lingual/index";
+import { lingual } from "./lingual/index";
 
 export const defaultErrorMessages: IErrorMessages = {
   [BuiltinApiErrorCode.Unkown]: lingual.lblUnknownError,
