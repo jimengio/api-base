@@ -19,7 +19,7 @@
 ### Usages
 
 ```bash
-yarn add beego/api-base
+yarn add @jimengio/api-base
 ```
 
 ```tsx
