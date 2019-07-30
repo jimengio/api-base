@@ -5,7 +5,7 @@
   "main": "./lib/index.js",
   "typings": "./lib/index.d.ts",
   "scripts": {
-    "compile": "tsc -d --project tsconfig-compile.json --outDir lib/",
+    "compile": "rm -rfv lib && tsc -d --project tsconfig-compile.json --outDir lib/",
     "prepare": "yarn compile"
   },
   "keywords": [],
