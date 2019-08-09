@@ -8,3 +8,11 @@ export { addGloablErrorMessages, addGlobalStatusCodeErrorMessages } from "./mess
 export { get, post, put, del } from "./api";
 
 export { IErrorMessages } from "./types";
+
+// APIs below appears to be more private. You are suggested to use public ones above
+
+export { generateCancelToken, getApiBaseUrl, setApiBaseUrl, setApiDefaultHeader } from "./api";
+export { BuiltinApiErrorCode } from "./codes";
+export { globalErrorMessages, globalStatusCodeErrorMessages } from "./messages";
+export { showError } from "./show-error";
+export { ApiError, IJimuApiOption } from "./types";

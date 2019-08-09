@@ -68,3 +68,15 @@ import { NetProgress } from "@jimengio/api-base";
 
 <NetProgress />;
 ```
+
+### API
+
+- `get` `post` `put` `del`, 基础 HTTP 请求
+- `changeApisLingual`, `EApisLangKind` 用于修改多语言配置
+- `NetProgress` 渲染网络状态的组件
+- `addGloablErrorMessages` `addGlobalStatusCodeErrorMessages` 设置错误文案`
+- `ApiError` `IJimuApiOption` API 属性配置类型
+- `BuiltinApiErrorCode` 内置错误码, 偶尔会用到
+- 私有 `generateCancelToken` `getApiBaseUrl` `setApiBaseUrl` `setApiDefaultHeader` API 状态修改方法
+- 私有 `globalErrorMessages` `globalStatusCodeErrorMessages`(类型为 `IErrorMessages`) 读取全局错误文案配置
+- 私有 `showError` 触发错误
