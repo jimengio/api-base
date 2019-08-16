@@ -29,6 +29,13 @@ get({
   baseURL: `http://my-api/api`,
   url: `/info`,
 });
+
+// 发送其他方法
+get({
+  method: "POST",
+  baseURL: `http://my-api/api`,
+  url: `/info`,
+});
 ```
 
 ##### 注册错误信息
