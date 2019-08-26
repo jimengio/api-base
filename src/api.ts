@@ -75,11 +75,11 @@ const handleError = (err: ApiError, config?: IJimuApiOption) => {
 
   let handler;
 
-  if (code) {
+  if (code != null) {
     handler = errorHandlerMap[code];
   }
 
-  if (handler === undefined && statusCode) {
+  if (handler === undefined && statusCode != null) {
     handler = statusCodeErrorHandlerMap[statusCode];
   }
 

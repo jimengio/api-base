@@ -42,6 +42,8 @@ export const defaultErrorMessages: IErrorMessages = {
   [BuiltinApiErrorCode.CommandExecution]: lingual.commandExecution,
   [BuiltinApiErrorCode.RegionContainsContent]: lingual.regionContainsContent,
   [BuiltinApiErrorCode.ErrEnterpriseExpired]: lingual.enterpriseExpiredErrorInfo,
+
+  [BuiltinApiErrorCode.NoConnection]: lingual.noConnection,
 };
 
 export let globalErrorMessages = defaultErrorMessages;
@@ -99,6 +101,8 @@ export const defaultStatusCodeErrorMessages: IErrorMessages = {
   [BuiltinApiErrorCode.DBDup]: lingual.lblDBDup,
   [BuiltinApiErrorCode.DBInternalError]: lingual.lblDBInternalError,
   [BuiltinApiErrorCode.DBDeadLockError]: lingual.lblDBDeadLockError,
+
+  [BuiltinApiErrorCode.NoConnection]: lingual.noConnection,
 };
 
 export let globalStatusCodeErrorMessages = defaultStatusCodeErrorMessages;
