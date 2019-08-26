@@ -79,11 +79,11 @@ export function humanizeError(
       const code = e.code;
       const statusCode = e.originError.response ? e.originError.response.status : 0;
 
-      if (code) {
+      if (code != null) {
         message = customErrorMessage[code] as string;
       }
 
-      if (message == null && statusCode) {
+      if (message == null && statusCode != null) {
         message = customStatusCodeErrorMessage[statusCode] as string;
       }
 
