@@ -78,4 +78,6 @@ export enum BuiltinApiErrorCode {
   CommandExecution = 200401,
   RegionContainsContent = 200501,
   BuiltInProject = 200502,
+
+  NoConnection = 0,
 }

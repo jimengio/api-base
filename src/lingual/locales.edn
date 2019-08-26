@@ -38,6 +38,7 @@
   "lblServerError" {"zhCN" "服务器内部错误", "enUS" "Server error"}
   "lblUnauthorized" {"zhCN" "请登录", "enUS" "Please sign in"}
   "lblUnknownError" {"zhCN" "未知错误", "enUS" "Unknown error"}
+  "noConnection" {"zhCN" "没有网络连接", "enUS" "No connection"}
   "orderHandlerDuplicate" {"zhCN" "处理者有重复", "enUS" "handler should not be same with seller or buyer"}
   "orderItemAmountOrPriceEmpty" {"zhCN" "内容数量为空或者单位价格为空", "enUS" "item amount empty or unit price empty"}
   "orderItemsEmpty" {"zhCN" "订单内容未设置", "enUS" "order items not set"}
