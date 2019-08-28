@@ -147,7 +147,11 @@ const doRequest = async (method: Method, option: IJimuApiOption) => {
     let response = await instance.request(option);
     return handleSuccess(response, option);
   } catch (err) {
-    return handleFailed(err, option);
+    if (axios.isCancel(err)) {
+      console.warn("Request canceled: ", err.message);
+    } else {
+      return handleFailed(err, option);
+    }
   }
 };
 
