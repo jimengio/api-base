@@ -7,7 +7,7 @@ export function showError(
   customErrorMessage = globalErrorMessages,
   customStatusCodeErrorMessage = globalStatusCodeErrorMessages
 ): void {
-  let errorHumanized = "";
+  let errorHumanized = null;
 
   if (error) {
     if (typeof error === "string") {
@@ -92,7 +92,7 @@ export function humanizeError(
       }
     }
 
-    return message;
+    return message || null;
   } else if (e instanceof Error) {
     return e.toString();
   }
