@@ -15,4 +15,4 @@ export { generateCancelToken, getApiBaseUrl, setApiBaseUrl, setApiDefaultHeader 
 export { BuiltinApiErrorCode } from "./codes";
 export { globalErrorMessages, globalStatusCodeErrorMessages } from "./messages";
 export { showError } from "./show-error";
-export { ApiError, IJimuApiOption } from "./types";
+export { ApiError, IJimuApiOption, ApiCancelToken, ApiCancelTokenSource } from "./types";

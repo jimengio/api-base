@@ -1,4 +1,4 @@
-import { AxiosError, AxiosRequestConfig } from "axios";
+import { AxiosError, AxiosRequestConfig, CancelTokenSource, CancelToken } from "axios";
 import { BuiltinApiErrorCode } from "./codes";
 
 export enum ApiErrorMessageId {}
@@ -59,3 +59,9 @@ export class ApiError extends Error {
     return this.code === BuiltinApiErrorCode.Unauthorized;
   }
 }
+
+/** api cancel source */
+export interface ApiCancelTokenSource extends CancelTokenSource {}
+
+/** api cancel token */
+export interface ApiCancelToken extends CancelToken {}
