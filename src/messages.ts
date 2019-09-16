@@ -42,8 +42,6 @@ export const defaultErrorMessages: IErrorMessages = {
   [BuiltinApiErrorCode.CommandExecution]: lingual.commandExecution,
   [BuiltinApiErrorCode.RegionContainsContent]: lingual.regionContainsContent,
   [BuiltinApiErrorCode.ErrEnterpriseExpired]: lingual.enterpriseExpiredErrorInfo,
-
-  [BuiltinApiErrorCode.NoConnection]: lingual.noConnection,
 };
 
 export let globalErrorMessages = defaultErrorMessages;
