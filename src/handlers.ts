@@ -10,13 +10,13 @@ export const defaultErrorHandler: IErrorHandler = {
   },
 };
 
-export let errorHandler = defaultErrorHandler;
+export let globalErrorCodeHandler = defaultErrorHandler;
 
 export function setErrorHandler(customErrorHandler: IErrorHandler, isMergeWithDefault = true) {
   if (isMergeWithDefault) {
-    Object.assign(errorHandler, customErrorHandler);
+    Object.assign(globalErrorCodeHandler, customErrorHandler);
   } else {
-    errorHandler = customErrorHandler;
+    globalErrorCodeHandler = customErrorHandler;
   }
 }
 
@@ -28,12 +28,12 @@ export const defaultStatusCodeErrorHandler: IErrorHandler = {
   },
 };
 
-export let statusCodeErrorHandler = defaultStatusCodeErrorHandler;
+export let globalStatusCodeErrorHandler = defaultStatusCodeErrorHandler;
 
 export function setStatusCodeErrorHandler(customStatusCodeErrorHandler: IErrorHandler, isMergeWithDefault = true) {
   if (isMergeWithDefault) {
-    Object.assign(statusCodeErrorHandler, customStatusCodeErrorHandler);
+    Object.assign(globalStatusCodeErrorHandler, customStatusCodeErrorHandler);
   } else {
-    statusCodeErrorHandler = customStatusCodeErrorHandler;
+    globalStatusCodeErrorHandler = customStatusCodeErrorHandler;
   }
 }
