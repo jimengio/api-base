@@ -64,7 +64,7 @@ const handleError = (err: ApiError, config?: IJimuApiOption) => {
     handler = safeGet(config.errorHandler, code) || globalErrorCodeHandler[code];
   }
 
-  if (handler === undefined && statusCode != null) {
+  if (handler == undefined && statusCode != null) {
     handler = safeGet(config.statusCodeErrorHandler, statusCode) || globalStatusCodeErrorHandler[statusCode];
   }
 
@@ -79,7 +79,7 @@ const rejectError = (error: AxiosError, config?: IJimuApiOption) => {
   const resp = error.response;
   const data = safeGet(resp, "data");
   const code = safeGet(data, "code") || 0;
-  const message = safeGet(data, "message") || safeGet(data, "Message") || data || safeGet(resp, "statusText");
+  const message = safeGet(data, "message") || data || safeGet(resp, "statusText");
   const errorData = safeGet(data, "data");
   const apiError = new ApiError(code, message, errorData, error);
 
