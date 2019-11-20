@@ -1,29 +1,24 @@
-import { globalErrorMessages, globalStatusCodeErrorMessages } from "./messages";
-import { ApiError } from "./types";
+import { ApiError, IErrorMessages } from "./types";
 import { JimuApisEventBus, EJimuApiEvent } from "./event-bus";
 
-export function showError(
-  error: string | Error | ApiError,
-  customErrorMessage = globalErrorMessages,
-  customStatusCodeErrorMessage = globalStatusCodeErrorMessages
-): void {
-  let errorHumanized = null;
-
-  if (error) {
-    if (typeof error === "string") {
-      errorHumanized = error;
-    } else if (error instanceof ApiError) {
-      errorHumanized = humanizeError(error, customErrorMessage, customStatusCodeErrorMessage) as string;
-    } else if (error instanceof Error) {
-      errorHumanized = error.toString();
-    }
+let emitAboutError = (err: string) => {
+  if (err == null) {
+    return;
   }
+  JimuApisEventBus.emit(EJimuApiEvent.ErrorMessage, err);
+};
 
-  if (errorHumanized != null) {
-    // 原来有个调用
-    // message.error(errorHumanized);
-
-    JimuApisEventBus.emit(EJimuApiEvent.ErrorMessage, errorHumanized);
+export function showError(error: string | Error | ApiError, customErrorMessage: IErrorMessages, customStatusCodeErrorMessage: IErrorMessages): void {
+  if (error == null) {
+    return;
+  }
+  if (typeof error === "string") {
+    emitAboutError(error);
+  } else if (error instanceof ApiError) {
+    emitAboutError(humanizeError(error, customErrorMessage, customStatusCodeErrorMessage) as string);
+    emitAboutError;
+  } else if (error instanceof Error) {
+    emitAboutError(error.toString());
   }
 }
 
@@ -33,15 +28,10 @@ interface IFieldError {
   error: string;
 }
 
-export function humanizeError(
-  e: ApiError | Error,
-  customErrorMessage = globalErrorMessages,
-  customStatusCodeErrorMessage = globalStatusCodeErrorMessages
-): string | IFieldError[] {
+export function humanizeError(e: ApiError | Error, customErrorMessage: IErrorMessages, customStatusCodeErrorMessage: IErrorMessages): string | IFieldError[] {
   if (e instanceof ApiError) {
-    let message: string | IFieldError[];
-
     if (e.data && e.data.error) {
+      let message: string;
       const messageId = e.data.error.messageId;
 
       if (messageId) {
@@ -53,6 +43,7 @@ export function humanizeError(
       } else if (e.data.error.message) {
         message = e.data.error.message;
       }
+      return message || null;
     } else if (e.data && e.data.errorFields) {
       const messageArr = [];
 
@@ -74,26 +65,29 @@ export function humanizeError(
         }
       });
 
-      message = messageArr;
+      return messageArr;
     } else {
+      let message: string | false;
       const code = e.code;
       const statusCode = e.originError.response ? e.originError.response.status : 0;
 
       if (code != null) {
-        message = customErrorMessage[code] as string;
+        message = customErrorMessage[code];
       }
 
       if (message == null && statusCode != null) {
-        message = customStatusCodeErrorMessage[statusCode] as string;
+        message = customStatusCodeErrorMessage[statusCode];
       }
 
       if (message == null) {
         message = e.message;
       }
+      // 从 code 可以设定 false, 这样 message 最后就被关闭了, 这里可能执行 `false || null`
+      return message || null;
     }
+  }
 
-    return message || null;
-  } else if (e instanceof Error) {
+  if (e instanceof Error) {
     return e.toString();
   }
 }

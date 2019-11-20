@@ -1,28 +1,16 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse, Method } from "axios";
 import { ApiError, IJimuApiOption } from "./types";
 import { globalErrorMessages, globalStatusCodeErrorMessages } from "./messages";
-import { errorHandler, statusCodeErrorHandler } from "./handlers";
+import { globalErrorCodeHandler, globalStatusCodeErrorHandler } from "./handlers";
 import { UrlModel } from "@jimengio/url-model";
 import { showError } from "./show-error";
 import { JimuApisEventBus, EJimuApiEvent } from "./event-bus";
 import Qs from "qs";
+import { notifyRequestStart, notifyRequestDone } from "./progress";
+import { safeGet } from "@jimengio/safe-property";
 
 const instance = axios.create();
 const CancelToken = axios.CancelToken;
-
-let pendingRequestCount = 0;
-
-function notifyRequestStart() {
-  pendingRequestCount++;
-  JimuApisEventBus.emit(EJimuApiEvent.Inc);
-}
-
-function notifyRequestDone() {
-  pendingRequestCount--;
-  if (pendingRequestCount === 0) {
-    JimuApisEventBus.emit(EJimuApiEvent.Done);
-  }
-}
 
 export function setApiBaseUrl(baseUrl: string) {
   const url = new UrlModel(baseUrl);
@@ -50,37 +38,34 @@ export function generateCancelToken() {
 }
 
 const handleError = (err: ApiError, config?: IJimuApiOption) => {
-  if (err.isUnauthorized) {
-    // 原来有个调用, 去耦合
-    // clearUserInfoCache();
+  if (config == null) {
+    config = {};
+  }
 
+  if (err.isUnauthorized()) {
     JimuApisEventBus.emit(EJimuApiEvent.ErrorUnauthorized);
   }
 
-  const code = err.code;
-  const statusCode = err.originError.response ? err.originError.response.status : 0;
+  /** 处理错误码的消息提示 */
 
-  const customErrorMessage = config && config.errorMessage;
-  const customStatusCodeErrorMessage = config && config.statusCodeErrorMessage;
-  const errorMessageMap = Object.assign({}, globalErrorMessages, customErrorMessage);
-  const statusCodeErrorMessageMap = Object.assign({}, globalStatusCodeErrorMessages, customStatusCodeErrorMessage);
+  const errorMessageMap = Object.assign({}, globalErrorMessages, config.errorMessage);
+  const statusCodeErrorMessageMap = Object.assign({}, globalStatusCodeErrorMessages, config.statusCodeErrorMessage);
 
   // errorMessageMap[code] might be set false to prevent showing messages
   showError(err, errorMessageMap, statusCodeErrorMessageMap);
 
-  const customErrorHandler = config && config.errorHandler;
-  const customStatusCodeErrorHandler = config && config.statusCodeErrorHandler;
-  const errorHandlerMap = Object.assign({}, errorHandler, customErrorHandler);
-  const statusCodeErrorHandlerMap = Object.assign({}, statusCodeErrorHandler, customStatusCodeErrorHandler);
+  /** 处理错误码对应的函数回调 */
 
-  let handler;
+  const code = err.code;
+  const statusCode = err.originError.response ? err.originError.response.status : 0;
+  let handler: ((err: ApiError) => void) | false;
 
   if (code != null) {
-    handler = errorHandlerMap[code];
+    handler = safeGet(config.errorHandler, code) || globalErrorCodeHandler[code];
   }
 
-  if (handler === undefined && statusCode != null) {
-    handler = statusCodeErrorHandlerMap[statusCode];
+  if (handler == undefined && statusCode != null) {
+    handler = safeGet(config.statusCodeErrorHandler, statusCode) || globalStatusCodeErrorHandler[statusCode];
   }
 
   if (handler !== false) {
@@ -92,71 +77,51 @@ const handleError = (err: ApiError, config?: IJimuApiOption) => {
 
 const rejectError = (error: AxiosError, config?: IJimuApiOption) => {
   const resp = error.response;
-  const data = resp && resp.data;
-  const code = (data && data.code) || 0;
-  const message = (data && data.message) || (data && data.Message) || data || (resp && resp.statusText);
-  const errorData = data && data.data;
+  const data = safeGet(resp, "data");
+  const code = safeGet(data, "code") || 0;
+  const message = safeGet(data, "message") || data || safeGet(resp, "statusText");
+  const errorData = safeGet(data, "data");
   const apiError = new ApiError(code, message, errorData, error);
 
-  let isAutoHandleError = true;
-  if (config && config.isAutoHandleError === false) {
-    isAutoHandleError = false;
+  if (safeGet(config, "isAutoHandleError") !== false) {
+    handleError(apiError, config);
   }
-
-  if (isAutoHandleError) handleError(apiError, config);
 
   return Promise.reject(apiError);
 };
 
-const handleSuccess = (resp: AxiosResponse, option: IJimuApiOption) => {
+const performRequest = async (option: IJimuApiOption) => {
   const { isShowProgressBar = true } = option;
 
-  if (isShowProgressBar) {
-    notifyRequestDone();
-  }
-
-  return resp.data;
-};
-
-const handleFailed = (error: AxiosError, option: IJimuApiOption) => {
-  const { isShowProgressBar = true } = option;
-
-  if (isShowProgressBar) {
-    notifyRequestDone();
-  }
-
-  return rejectError(error, option);
-};
-
-const beforeRequest = (method: Method, option: IJimuApiOption) => {
+  // 兼容 endpoint 作为 url 属性使用
   option.url = option.url || option.endpoint;
-  if (option.query) option.params = Object.assign({}, option.params, option.query);
-  option.method = option.method || method;
-
-  const { isShowProgressBar = true } = option;
+  if (option.query) {
+    option.params = Object.assign({}, option.params, option.query);
+  }
 
   if (isShowProgressBar) {
     notifyRequestStart();
   }
-};
-
-const doRequest = async (method: Method, option: IJimuApiOption) => {
-  beforeRequest(method, option);
 
   try {
     let response = await instance.request(option);
-    return handleSuccess(response, option);
+    return response.data;
   } catch (err) {
     if (axios.isCancel(err)) {
-      console.warn("Request canceled: ", err.message);
+      console.warn("Request canceled: ", option.method, option.url, err.message);
     } else {
-      return handleFailed(err, option);
+      return rejectError(err, option);
+    }
+  } finally {
+    if (isShowProgressBar) {
+      notifyRequestDone();
     }
   }
 };
 
 export const get = async <T = any>(option: IJimuApiOption): Promise<T> => {
-  return doRequest("get", option);
+  option.method = "GET";
+  return performRequest(option);
 };
 
 /**
@@ -173,19 +138,22 @@ export const getWithNestedParams = async (option: IJimuApiOption) => {
     });
   };
 
-  return doRequest("get", option);
+  return get(option);
 };
 
 export const post = async <T = any>(option: IJimuApiOption): Promise<T> => {
-  return doRequest("post", option);
+  option.method = "POST";
+  return performRequest(option);
 };
 
 export const put = async <T = any>(option: IJimuApiOption): Promise<T> => {
-  return doRequest("put", option);
+  option.method = "PUT";
+  return performRequest(option);
 };
 
 export const del = async <T = any>(option: IJimuApiOption): Promise<T> => {
-  return doRequest("delete", option);
+  option.method = "DELETE";
+  return performRequest(option);
 };
 
 setApiDefaultConfig({ withCredentials: true });

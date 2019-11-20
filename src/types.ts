@@ -55,7 +55,7 @@ export class ApiError extends Error {
     this.originError = originError;
   }
 
-  get isUnauthorized(): boolean {
+  isUnauthorized(): boolean {
     return this.code === BuiltinApiErrorCode.Unauthorized;
   }
 }
