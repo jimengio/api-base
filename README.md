@@ -18,6 +18,8 @@
 
 ### Usages
 
+![](https://img.shields.io/npm/v/@jimengio/api-base.svg?style=flat-square)
+
 ```bash
 yarn add @jimengio/api-base
 ```
