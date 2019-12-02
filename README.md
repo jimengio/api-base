@@ -50,6 +50,19 @@ addGloablErrorMessages({
 });
 ```
 
+对于特定的错误码定制错误信息(覆盖默认注册的错误信息):
+
+```ts
+put({
+  url: `/plants/${plantId}/materials/${materialId}`,
+  baseURL: coresBaseUrl,
+  data: options,
+  errorMessage: {
+    [ApiErrorCode.DBDup]: lingual.materialCodeAlreadyExists,
+  },
+});
+```
+
 ##### 监听 API 特殊的事件:
 
 ```tsx
