@@ -63,6 +63,14 @@ put({
 });
 ```
 
+通过 `false` 可以关闭特定错误码的报错提示:
+
+```ts
+errorMessage: {
+  [ApiErrorCode.DBDup]: false,
+},
+```
+
 ##### 监听 API 特殊的事件:
 
 ```tsx
