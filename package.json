@@ -1,6 +1,6 @@
 {
   "name": "@jimengio/api-base",
-  "version": "0.2.6",
+  "version": "0.2.7-a1",
   "description": "",
   "main": "./lib/index.js",
   "typings": "./lib/index.d.ts",
@@ -12,24 +12,20 @@
   "author": "JIMENGIO",
   "license": "ISC",
   "devDependencies": {
-    "@jimengio/safe-property": "^0.0.2",
-    "@jimengio/shared-utils": "^0.1.3",
     "@jimengio/url-model": "^0.0.1",
     "@types/lodash-es": "^4.17.3",
-    "@types/node": "^12.6.8",
-    "@types/qs": "^6.5.3",
+    "@types/node": "^13.1.2",
+    "@types/qs": "^6.9.0",
     "@types/query-string": "^6.3.0",
-    "@types/react": "^16.8.23",
-    "dayjs": "^1.8.15",
-    "emotion": "^10.0.14",
-    "immer": "^3.1.3",
-    "query-string": "^6.8.1",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "typescript": "^3.5.3"
+    "@types/react": "^16.9.17",
+    "dayjs": "^1.8.18",
+    "emotion": "^10.0.27",
+    "query-string": "^6.9.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "typescript": "^3.7.4"
   },
   "peerDependencies": {
-    "@jimengio/safe-property": "^0.0.2",
     "@jimengio/url-model": "^0.0.1",
     "@types/react": "^16.8.16",
     "emotion": "^10.0.9",
@@ -39,6 +35,6 @@
     "axios": "^0.19.0",
     "eventemitter3": "^4.0.0",
     "lodash-es": "^4.17.15",
-    "qs": "^6.7.0"
+    "qs": "^6.9.1"
   }
 }

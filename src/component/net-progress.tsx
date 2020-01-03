@@ -1,6 +1,5 @@
 import React from "react";
 import { css, cx } from "emotion";
-import { immerHelpers, ImmerStateFunc, MergeStateFunc } from "@jimengio/shared-utils";
 import { JimuApisEventBus, EJimuApiEvent } from "../event-bus";
 
 interface IProps {}
@@ -19,9 +18,6 @@ export default class NetProgress extends React.Component<IProps, IState> {
       displaying: false,
     };
   }
-
-  immerState = immerHelpers.immerState as ImmerStateFunc<IState>;
-  mergeState = immerHelpers.mergeState as MergeStateFunc<IState>;
 
   componentDidMount() {
     // connect to API events
@@ -47,28 +43,31 @@ export default class NetProgress extends React.Component<IProps, IState> {
   }
 
   incrementProgress = () => {
-    this.immerState((state) => {
-      // console.info("increament", state.progress);
-      if (state.displaying) {
-        state.progress = state.progress + (100 - state.progress) * 0.382;
-      } else {
-        state.displaying = true;
-        state.progress = 38.2;
-      }
-    });
+    // console.info("increament", state.progress);
+    if (this.state.displaying) {
+      this.setState({
+        ...this.state,
+        progress: this.state.progress + (100 - this.state.progress) * 0.382,
+      });
+    } else {
+      this.setState({
+        displaying: true,
+        progress: 38.2,
+      });
+    }
   };
 
   completeProgress = () => {
     // console.info("done");
-    this.immerState((state) => {
-      state.displaying = false;
-      state.progress = 100;
+    this.setState({
+      displaying: false,
+      progress: 100,
     });
 
     setTimeout(() => {
-      this.immerState((state) => {
-        state.displaying = false;
-        state.progress = 0;
+      this.setState({
+        displaying: false,
+        progress: 0,
       });
     }, 400);
   };

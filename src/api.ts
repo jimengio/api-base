@@ -7,7 +7,6 @@ import { showError } from "./show-error";
 import { JimuApisEventBus, EJimuApiEvent } from "./event-bus";
 import Qs from "qs";
 import { notifyRequestStart, notifyRequestDone } from "./progress";
-import { safeGet } from "@jimengio/safe-property";
 
 const instance = axios.create();
 const CancelToken = axios.CancelToken;
@@ -61,11 +60,11 @@ const handleError = (err: ApiError, config?: IJimuApiOption) => {
   let handler: ((err: ApiError) => void) | false;
 
   if (code != null) {
-    handler = safeGet(config.errorHandler, code) || globalErrorCodeHandler[code];
+    handler = config.errorHandler?.[code] || globalErrorCodeHandler[code];
   }
 
   if (handler == undefined && statusCode != null) {
-    handler = safeGet(config.statusCodeErrorHandler, statusCode) || globalStatusCodeErrorHandler[statusCode];
+    handler = config.statusCodeErrorHandler?.[statusCode] || globalStatusCodeErrorHandler[statusCode];
   }
 
   if (handler !== false) {
@@ -77,13 +76,13 @@ const handleError = (err: ApiError, config?: IJimuApiOption) => {
 
 const rejectError = (error: AxiosError, config?: IJimuApiOption) => {
   const resp = error.response;
-  const data = safeGet(resp, "data");
-  const code = safeGet(data, "code") || 0;
-  const message = safeGet(data, "message") || data || safeGet(resp, "statusText");
-  const errorData = safeGet(data, "data");
+  const data = resp?.data;
+  const code = data?.code || 0;
+  const message = data?.message || data || resp?.statusText;
+  const errorData = data?.data;
   const apiError = new ApiError(code, message, errorData, error);
 
-  if (safeGet(config, "isAutoHandleError") !== false) {
+  if (config?.isAutoHandleError !== false) {
     handleError(apiError, config);
   }
 
