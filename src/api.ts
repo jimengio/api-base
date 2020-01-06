@@ -2,7 +2,6 @@ import axios, { AxiosError, AxiosRequestConfig, AxiosResponse, Method } from "ax
 import { ApiError, IJimuApiOption } from "./types";
 import { globalErrorMessages, globalStatusCodeErrorMessages } from "./messages";
 import { globalErrorCodeHandler, globalStatusCodeErrorHandler } from "./handlers";
-import { UrlModel } from "@jimengio/url-model";
 import { showError } from "./show-error";
 import { JimuApisEventBus, EJimuApiEvent } from "./event-bus";
 import Qs from "qs";
@@ -12,8 +11,7 @@ const instance = axios.create();
 const CancelToken = axios.CancelToken;
 
 export function setApiBaseUrl(baseUrl: string) {
-  const url = new UrlModel(baseUrl);
-  instance.defaults.baseURL = url.toString();
+  instance.defaults.baseURL = baseUrl;
 }
 
 export function getApiBaseUrl() {
