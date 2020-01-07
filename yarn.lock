@@ -97,11 +97,6 @@
   resolved "https://registry.npmjs.org/@emotion/weak-memoize/-/weak-memoize-0.2.5.tgz#8eed982e2ee6f7f4e44c253e12962980791efd46"
   integrity sha512-6U71C2Wp7r5XtFtQzYrW5iKFT67OixrSxjI4MptCHzdSVlgabczzqLe0ZSgnub/5Kp4hSbpDB1tMytZY9pwxxA==
 
-"@jimengio/url-model@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.npmjs.org/@jimengio/url-model/-/url-model-0.0.1.tgz#9e92ffe980e6d929a95e344ef360c5bc44dd0645"
-  integrity sha512-rZVFq+Jl+CMzvb0E6i6M0Gth4Oebk4AdlexJmq8Hbpiy4v853CYzEHYNY8vowrbHqcdaadCmbK8AXNfDDVA9ag==
-
 "@types/lodash-es@^4.17.3":
   version "4.17.3"
   resolved "https://registry.npmjs.org/@types/lodash-es/-/lodash-es-4.17.3.tgz#87eb0b3673b076b8ee655f1890260a136af09a2d"
