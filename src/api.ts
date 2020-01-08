@@ -4,7 +4,6 @@ import { globalErrorMessages, globalStatusCodeErrorMessages } from "./messages";
 import { globalErrorCodeHandler, globalStatusCodeErrorHandler } from "./handlers";
 import { showError } from "./show-error";
 import { JimuApisEventBus, EJimuApiEvent } from "./event-bus";
-import Qs from "qs";
 import { notifyRequestStart, notifyRequestDone } from "./progress";
 
 const instance = axios.create();
@@ -119,23 +118,6 @@ const performRequest = async (option: IJimuApiOption) => {
 export const get = async <T = any>(option: IJimuApiOption): Promise<T> => {
   option.method = "GET";
   return performRequest(option);
-};
-
-/**
- * parse object params
- *
- * query: obj = {a: 1, b: 2} -> obj[a]=1&obj[b]=2
- * @param option
- */
-export const getWithNestedParams = async (option: IJimuApiOption) => {
-  option.paramsSerializer = function(params) {
-    return Qs.stringify(params, {
-      arrayFormat: "brackets",
-      encode: false,
-    });
-  };
-
-  return get(option);
 };
 
 export const post = async <T = any>(option: IJimuApiOption): Promise<T> => {
