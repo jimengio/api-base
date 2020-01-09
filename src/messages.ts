@@ -2,7 +2,7 @@ import { IErrorMessages } from "./types";
 import { BuiltinApiErrorCode } from "./codes";
 import { lingual } from "./lingual/index";
 
-export const defaultErrorMessages: IErrorMessages = {
+const defaultErrorMessages: IErrorMessages = {
   [BuiltinApiErrorCode.Unkown]: lingual.lblUnknownError,
 
   [BuiltinApiErrorCode.BadRequest]: lingual.lblBadRequest,
@@ -53,8 +53,7 @@ export function addGloablErrorMessages(customErrorMessage: IErrorMessages, overw
     globalErrorMessages = customErrorMessage;
   }
 }
-
-export const defaultStatusCodeErrorMessages: IErrorMessages = {
+const defaultStatusCodeErrorMessages: IErrorMessages = {
   [BuiltinApiErrorCode.BadRequest]: lingual.lblBadRequest,
   [BuiltinApiErrorCode.Unauthorized]: lingual.lblUnauthorized,
   [BuiltinApiErrorCode.PaymentRequired]: lingual.lblBadRequest,
