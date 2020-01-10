@@ -1,5 +1,6 @@
 import { ApiError, IErrorMessages } from "./types";
 import { JimuApisEventBus, EJimuApiEvent } from "./event-bus";
+import { globalErrorMessages, globalStatusCodeErrorMessages } from "./messages";
 
 let emitAboutError = (err: string) => {
   if (err == null) {
@@ -8,7 +9,11 @@ let emitAboutError = (err: string) => {
   JimuApisEventBus.emit(EJimuApiEvent.ErrorMessage, err);
 };
 
-export function showError(error: string | Error | ApiError, customErrorMessage: IErrorMessages, customStatusCodeErrorMessage: IErrorMessages): void {
+export function showError(
+  error: string | Error | ApiError,
+  customErrorMessage: IErrorMessages = globalErrorMessages,
+  customStatusCodeErrorMessage: IErrorMessages = globalStatusCodeErrorMessages
+): void {
   if (error == null) {
     return;
   }
@@ -28,7 +33,11 @@ interface IFieldError {
   error: string;
 }
 
-export function humanizeError(e: ApiError | Error, customErrorMessage: IErrorMessages, customStatusCodeErrorMessage: IErrorMessages): string | IFieldError[] {
+export function humanizeError(
+  e: ApiError | Error,
+  customErrorMessage: IErrorMessages = globalErrorMessages,
+  customStatusCodeErrorMessage: IErrorMessages = globalStatusCodeErrorMessages
+): string | IFieldError[] {
   if (e instanceof ApiError) {
     if (e.data && e.data.error) {
       let message: string;
