@@ -80,4 +80,6 @@ export enum BuiltinApiErrorCode {
   BuiltInProject = 200502,
 
   NoConnection = 0,
+
+  FrontOrderFirst = 201210, //当前仓库中的单件无需追溯mg物料，还有待审核的前序盘点单，请先处理前序订单
 }
