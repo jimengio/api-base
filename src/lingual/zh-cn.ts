@@ -36,7 +36,7 @@ export const zhCN: ILang = {
   lblServerError: "服务器内部错误",
   lblUnauthorized: "请登录",
   lblUnknownError: "未知错误",
-  noConnection: "没有网络连接",
+  noConnectionToServer: "无法访问到服务器",
   orderHandlerDuplicate: "处理者有重复",
   orderItemAmountOrPriceEmpty: "内容数量为空或者单位价格为空",
   orderItemsEmpty: "订单内容未设置",
