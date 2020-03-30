@@ -1,64 +1,64 @@
 {
- :sessions {}
- :users {}
- :locales {
-  "IOError" {"zhCN" "输入输出错误", "enUS" "io error"}
-  "activateCodeAlreadyUsed" {"zhCN" "激活码已被使用", "enUS" "activate code already used"}
-  "activateCodeInvalid" {"zhCN" "不合法的激活码", "enUS" "invalid activate code"}
-  "authCodeInvalid" {"zhCN" "验证码错误", "enUS" "invalid auth code"}
-  "authCreateFailed" {"zhCN" "创建秘钥失败", "enUS" "token create failed"}
-  "authEnterpriseFailed" {"zhCN" "企业信息验证失败", "enUS" "enterprise info auth failed"}
-  "authExpiredToken" {"zhCN" "秘钥已过期", "enUS" "expired token"}
-  "authInActived" {"zhCN" "认证未启用", "enUS" "inactived"}
-  "authInvalidHeader" {"zhCN" "请求头部没有认证信息", "enUS" "authorization not in request headers"}
-  "authInvalidToken" {"zhCN" "无效秘钥", "enUS" "invalid token"}
-  "authInvalidType" {"zhCN" "不合法的认证类型", "enUS" "invalid auth type"}
-  "authNeedSSL" {"zhCN" "请使用https访问", "enUS" "please access api with ssl"}
-  "authSuNoPerm" {"zhCN" "没有权限模拟登陆", "enUS" "no permission to su"}
-  "authTimesExceedLimit" {"zhCN" "超过认证次数限制", "enUS" "auth times exceed limit"}
-  "authTypeNotSupport" {"zhCN" "不支持该认证类型", "enUS" "auth type not support"}
-  "authUserNotFound" {"zhCN" "找不到用户信息", "enUS" "user info not found"}
-  "authWrongSuInfo" {"zhCN" "模拟登陆信息不合法", "enUS" "invalid su info"}
-  "cannotHaveTheSameNameAsTheParentRegion" {"zhCN" "无法与父级区域同名！", "enUS" "Cannot have the same name as the parent region!"}
-  "categoryShouldNotBeDeleted" {"zhCN" "类型不应该被删除", "enUS" "Category should not be deleted"}
-  "commandExecution" {"zhCN" "执行命令失败", "enUS" "failed to execute command"}
-  "diagnoseModelUpdate" {"zhCN" "贝叶斯模型更新失败", "enUS" "bayes model update failed"}
-  "enterpriseExpiredErrorInfo" {"zhCN" "您所在企业已经超过许可日期限制，需要续费后才能继续使用.", "enUS" "Your business has exceeded the license date limit and needs to be renewed before continuing to use."}
-  "handlerNotSet" {"zhCN" "处理函数未设置", "enUS" "handler not set"}
-  "inspectionMethodReferencedNotDeleted" {"zhCN" "该检验方法已被检查项引用，请先修改相关检查项！", "enUS" "This inspection method has been referenced by the check item, please modify the relevant check item first!"}
-  "insufficientNumberOfOrdersCanBeGenerated" {"zhCN" "可生成的单号不足，请修改编号规则！", "enUS" "Insufficient number of orders can be generated. Please modify the numbering rules !"}
-  "invalidAuthorizationInfo" {"zhCN" "账号或密码错误", "enUS" "Invalid authorization info"}
-  "lblBadRequest" {"zhCN" "无效请求", "enUS" "Bad request"}
-  "lblDBDeadLockError" {"zhCN" "数据库死锁", "enUS" "Database dead lock."}
-  "lblDBDup" {"zhCN" "数据已存在", "enUS" "Data duplicate."}
-  "lblDBInternalError" {"zhCN" "数据库错误", "enUS" "Database error."}
-  "lblDataNotFound" {"zhCN" "资源未找到", "enUS" "Data not found"}
-  "lblNoPermission" {"zhCN" "无权访问", "enUS" "No permission"}
-  "lblRequestTimeout" {"zhCN" "请求超时", "enUS" "Request timeout"}
-  "lblServerError" {"zhCN" "服务器内部错误", "enUS" "Server error"}
-  "lblUnauthorized" {"zhCN" "请登录", "enUS" "Please sign in"}
-  "lblUnknownError" {"zhCN" "未知错误", "enUS" "Unknown error"}
-  "noConnection" {"zhCN" "没有网络连接", "enUS" "No connection"}
-  "orderHandlerDuplicate" {"zhCN" "处理者有重复", "enUS" "handler should not be same with seller or buyer"}
-  "orderItemAmountOrPriceEmpty" {"zhCN" "内容数量为空或者单位价格为空", "enUS" "item amount empty or unit price empty"}
-  "orderItemsEmpty" {"zhCN" "订单内容未设置", "enUS" "order items not set"}
-  "orderNotWorking" {"zhCN" "订单不在工作过程当中", "enUS" "order is not in working progress"}
-  "orderNumberAlreadyExists" {"zhCN" "该单号已存在", "enUS" "Order number already exists"}
-  "orderSnEmpty" {"zhCN" "订单序列号必填", "enUS" "order sn is required"}
-  "orderUserIdsEmpty" {"zhCN" "用户 ID 不可以为空", "enUS" "user ids should not be empty"}
-  "pleaseWaitAMoment" {"zhCN" "请等待", "enUS" "please wait a moment"}
-  "regionContainsContent" {"zhCN" "区域包含内容（下级区域或者库存物料）, 不可以删除", "enUS" "Area contains content (subordinate area or stock material) and cannot be deleted"}
-  "sequenceRuleConflicted" {"zhCN" "序列号规则发生冲突", "enUS" "Sequence rule conflicted"}
-  "sequenceRuleInvalid" {"zhCN" "编号规则不合法", "enUS" "seuqnece rule invalid"}
-  "sequenceRuleNotFound" {"zhCN" "编号规则未找到", "enUS" "sequence rule not found"}
-  "systemUnitProhibitsModification" {"zhCN" "系统单位禁止修改", "enUS" "System unit prohibits modification"}
-  "theWarehouseHasASubareaThatCannotBeDeleted" {"zhCN" "仓库存在子区域无法删除!", "enUS" "The warehouse has a subarea that cannot be deleted!"}
-  "unitNotSet" {"zhCN" "单位未设置", "enUS" "unit not set"}
-  "userMobileAlreadyBinded" {"zhCN" "手机号已被绑定", "enUS" "user mobile already binded"}
-  "userMobileNeedBind" {"zhCN" "需要绑定手机", "enUS" "user mobile need to bind"}
-  "userMobileUsedByOthers" {"zhCN" "手机号已被其他账号使用", "enUS" "user mobile used by others"}
-  "workflowNotFound" {"zhCN" "流程未找到", "enUS" "workflow not found"}
- }
- :schema {:version "0.2.x"}
- :settings {:app-id "050bf2725352f125", :app-secret "w7qw7ME8c8wGQJBk8EOM5MuFybgoEA9F"}
+  :sessions {}
+  :users {}
+  :locales {
+    "IOError" {"zhCN" "输入输出错误", "enUS" "io error"}
+    "activateCodeAlreadyUsed" {"zhCN" "激活码已被使用", "enUS" "activate code already used"}
+    "activateCodeInvalid" {"zhCN" "不合法的激活码", "enUS" "invalid activate code"}
+    "authCodeInvalid" {"zhCN" "验证码错误", "enUS" "invalid auth code"}
+    "authCreateFailed" {"zhCN" "创建秘钥失败", "enUS" "token create failed"}
+    "authEnterpriseFailed" {"zhCN" "企业信息验证失败", "enUS" "enterprise info auth failed"}
+    "authExpiredToken" {"zhCN" "秘钥已过期", "enUS" "expired token"}
+    "authInActived" {"zhCN" "认证未启用", "enUS" "inactived"}
+    "authInvalidHeader" {"zhCN" "请求头部没有认证信息", "enUS" "authorization not in request headers"}
+    "authInvalidToken" {"zhCN" "无效秘钥", "enUS" "invalid token"}
+    "authInvalidType" {"zhCN" "不合法的认证类型", "enUS" "invalid auth type"}
+    "authNeedSSL" {"zhCN" "请使用https访问", "enUS" "please access api with ssl"}
+    "authSuNoPerm" {"zhCN" "没有权限模拟登陆", "enUS" "no permission to su"}
+    "authTimesExceedLimit" {"zhCN" "超过认证次数限制", "enUS" "auth times exceed limit"}
+    "authTypeNotSupport" {"zhCN" "不支持该认证类型", "enUS" "auth type not support"}
+    "authUserNotFound" {"zhCN" "找不到用户信息", "enUS" "user info not found"}
+    "authWrongSuInfo" {"zhCN" "模拟登陆信息不合法", "enUS" "invalid su info"}
+    "cannotHaveTheSameNameAsTheParentRegion" {"zhCN" "无法与父级区域同名！", "enUS" "Cannot have the same name as the parent region!"}
+    "categoryShouldNotBeDeleted" {"zhCN" "类型不应该被删除", "enUS" "Category should not be deleted"}
+    "commandExecution" {"zhCN" "执行命令失败", "enUS" "failed to execute command"}
+    "diagnoseModelUpdate" {"zhCN" "贝叶斯模型更新失败", "enUS" "bayes model update failed"}
+    "enterpriseExpiredErrorInfo" {"zhCN" "您所在企业已经超过许可日期限制，需要续费后才能继续使用.", "enUS" "Your business has exceeded the license date limit and needs to be renewed before continuing to use."}
+    "handlerNotSet" {"zhCN" "处理函数未设置", "enUS" "handler not set"}
+    "inspectionMethodReferencedNotDeleted" {"zhCN" "该检验方法已被检查项引用，请先修改相关检查项！", "enUS" "This inspection method has been referenced by the check item, please modify the relevant check item first!"}
+    "insufficientNumberOfOrdersCanBeGenerated" {"zhCN" "可生成的单号不足，请修改编号规则！", "enUS" "Insufficient number of orders can be generated. Please modify the numbering rules !"}
+    "invalidAuthorizationInfo" {"zhCN" "账号或密码错误", "enUS" "Invalid authorization info"}
+    "lblBadRequest" {"zhCN" "无效请求", "enUS" "Bad request"}
+    "lblDBDeadLockError" {"zhCN" "数据库死锁", "enUS" "Database dead lock."}
+    "lblDBDup" {"zhCN" "数据已存在", "enUS" "Data duplicate."}
+    "lblDBInternalError" {"zhCN" "数据库错误", "enUS" "Database error."}
+    "lblDataNotFound" {"zhCN" "资源未找到", "enUS" "Data not found"}
+    "lblNoPermission" {"zhCN" "无权访问", "enUS" "No permission"}
+    "lblRequestTimeout" {"zhCN" "请求超时", "enUS" "Request timeout"}
+    "lblServerError" {"zhCN" "服务器内部错误", "enUS" "Server error"}
+    "lblUnauthorized" {"zhCN" "请登录", "enUS" "Please sign in"}
+    "lblUnknownError" {"zhCN" "未知错误", "enUS" "Unknown error"}
+    "noConnectionToServer" {"zhCN" "无法访问到服务器", "enUS" "No connection to server"}
+    "orderHandlerDuplicate" {"zhCN" "处理者有重复", "enUS" "handler should not be same with seller or buyer"}
+    "orderItemAmountOrPriceEmpty" {"zhCN" "内容数量为空或者单位价格为空", "enUS" "item amount empty or unit price empty"}
+    "orderItemsEmpty" {"zhCN" "订单内容未设置", "enUS" "order items not set"}
+    "orderNotWorking" {"zhCN" "订单不在工作过程当中", "enUS" "order is not in working progress"}
+    "orderNumberAlreadyExists" {"zhCN" "该单号已存在", "enUS" "Order number already exists"}
+    "orderSnEmpty" {"zhCN" "订单序列号必填", "enUS" "order sn is required"}
+    "orderUserIdsEmpty" {"zhCN" "用户 ID 不可以为空", "enUS" "user ids should not be empty"}
+    "pleaseWaitAMoment" {"zhCN" "请等待", "enUS" "please wait a moment"}
+    "regionContainsContent" {"zhCN" "区域包含内容（下级区域或者库存物料）, 不可以删除", "enUS" "Area contains content (subordinate area or stock material) and cannot be deleted"}
+    "sequenceRuleConflicted" {"zhCN" "序列号规则发生冲突", "enUS" "Sequence rule conflicted"}
+    "sequenceRuleInvalid" {"zhCN" "编号规则不合法", "enUS" "seuqnece rule invalid"}
+    "sequenceRuleNotFound" {"zhCN" "编号规则未找到", "enUS" "sequence rule not found"}
+    "systemUnitProhibitsModification" {"zhCN" "系统单位禁止修改", "enUS" "System unit prohibits modification"}
+    "theWarehouseHasASubareaThatCannotBeDeleted" {"zhCN" "仓库存在子区域无法删除!", "enUS" "The warehouse has a subarea that cannot be deleted!"}
+    "unitNotSet" {"zhCN" "单位未设置", "enUS" "unit not set"}
+    "userMobileAlreadyBinded" {"zhCN" "手机号已被绑定", "enUS" "user mobile already binded"}
+    "userMobileNeedBind" {"zhCN" "需要绑定手机", "enUS" "user mobile need to bind"}
+    "userMobileUsedByOthers" {"zhCN" "手机号已被其他账号使用", "enUS" "user mobile used by others"}
+    "workflowNotFound" {"zhCN" "流程未找到", "enUS" "workflow not found"}
+  }
+  :schema {:version "0.2.x"}
+  :settings {:app-id "050bf2725352f125", :app-secret "w7qw7ME8c8wGQJBk8EOM5MuFybgoEA9F"}
 }

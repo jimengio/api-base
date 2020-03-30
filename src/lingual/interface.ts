@@ -35,7 +35,7 @@ export interface ILang {
   lblServerError: string;
   lblUnauthorized: string;
   lblUnknownError: string;
-  noConnection: string;
+  noConnectionToServer: string;
   orderHandlerDuplicate: string;
   orderItemAmountOrPriceEmpty: string;
   orderItemsEmpty: string;

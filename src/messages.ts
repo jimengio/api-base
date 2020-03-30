@@ -99,7 +99,7 @@ const defaultStatusCodeErrorMessages: IErrorMessages = {
   [BuiltinApiErrorCode.DBInternalError]: lingual.lblDBInternalError,
   [BuiltinApiErrorCode.DBDeadLockError]: lingual.lblDBDeadLockError,
 
-  [BuiltinApiErrorCode.NoConnection]: lingual.noConnection,
+  [BuiltinApiErrorCode.NoConnectionToServer]: lingual.noConnectionToServer,
 };
 
 export let globalStatusCodeErrorMessages = defaultStatusCodeErrorMessages;

@@ -79,5 +79,5 @@ export enum BuiltinApiErrorCode {
   RegionContainsContent = 200501,
   BuiltInProject = 200502,
 
-  NoConnection = 0,
+  NoConnectionToServer = 0,
 }

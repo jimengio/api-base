@@ -36,7 +36,7 @@ export const enUS: ILang = {
   lblServerError: "Server error",
   lblUnauthorized: "Please sign in",
   lblUnknownError: "Unknown error",
-  noConnection: "No connection",
+  noConnectionToServer: "No connection to server",
   orderHandlerDuplicate: "handler should not be same with seller or buyer",
   orderItemAmountOrPriceEmpty: "item amount empty or unit price empty",
   orderItemsEmpty: "order items not set",
