@@ -46,7 +46,7 @@ const defaultErrorMessages: IErrorMessages = {
 
 export let globalErrorMessages = defaultErrorMessages;
 
-export function addGloablErrorMessages(customErrorMessage: IErrorMessages, overwrite = true) {
+export function addGlobalErrorMessages(customErrorMessage: IErrorMessages, overwrite = true) {
   if (overwrite) {
     Object.assign(globalErrorMessages, customErrorMessage);
   } else {
