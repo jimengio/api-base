@@ -43,9 +43,9 @@ get({
 ##### 注册错误信息
 
 ```tsx
-import { addGloablErrorMessages } from "@jimengio/api-base";
+import { addGlobalErrorMessages } from "@jimengio/api-base";
 
-addGloablErrorMessages({
+addGlobalErrorMessages({
   00001: "信息不合法",
 });
 ```
@@ -104,7 +104,7 @@ import { NetProgress } from "@jimengio/api-base";
 - `get` `post` `put` `del`, 基础 HTTP 请求
 - `changeApisLingual`, `EApisLangKind` 用于修改多语言配置
 - `NetProgress` 渲染网络状态的组件
-- `addGloablErrorMessages` `addGlobalStatusCodeErrorMessages` 设置错误文案`
+- `addGlobalErrorMessages` `addGlobalStatusCodeErrorMessages` 设置错误文案`
 - `ApiError` `IJimuApiOption` API 属性配置类型
 - `BuiltinApiErrorCode` 内置错误码, 偶尔会用到
 - 私有 `generateCancelToken` `getApiBaseUrl` `setApiBaseUrl` `setApiDefaultHeader` API 状态修改方法
