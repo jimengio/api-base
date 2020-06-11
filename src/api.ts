@@ -17,6 +17,11 @@ export function getApiBaseUrl() {
   return instance.defaults.baseURL;
 }
 
+/** 强行暴露 instance 供外部处理, 不推荐使用, 只在特殊场景用往 instance 插入逻辑 */
+export let processApiBaseInstance = (f: (apiInstance: typeof instance) => void) => {
+  f(instance);
+};
+
 export function setApiDefaultHeader(headers: any, isMerge = true) {
   if (isMerge) {
     Object.assign(instance.defaults.headers, headers);
