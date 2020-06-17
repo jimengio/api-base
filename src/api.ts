@@ -59,7 +59,7 @@ const handleError = (err: ApiError, config?: IJimuApiOption) => {
     // 设置为空方便后续判断
     generatedMessages = undefined;
   }
-  config?.acceptServerValidations(generatedMessages);
+  config.acceptServerValidations?.(generatedMessages);
 
   /** 处理错误码对应的函数回调 */
 

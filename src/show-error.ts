@@ -105,13 +105,13 @@ let correctFieldNameFromBackend = (x: string) => {
 
 export let transformErrorFieldMessages = (errorFields: IApiErrorItem[], fieldsLocalesDict: object) => {
   return errorFields.map((info) => {
-    let text = lingual[`validatorId_${info.messageId}`] as string;
+    let text = lingual[`validatorId_${info.messageId.replace("validator.", "")}`] as string;
     let field = correctFieldNameFromBackend(info.name);
-    text = text.replace("$0", fieldsLocalesDict[field] || field);
     if (text) {
-      info.messageParams.forEach((param, idx) => {
+      text = text.replace("{0}", fieldsLocalesDict?.[field] || field);
+      info.messageParams?.forEach((param, idx) => {
         if (idx > 0) {
-          text = text.replace(`\$${idx}`, param as string);
+          text = text.replace(`{${idx}}`, param as string);
         }
       });
       return { field, message: text };
