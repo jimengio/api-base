@@ -1,7 +1,7 @@
 import { ApiError, IErrorMessages, IApiErrorItem } from "./types";
 import { JimuApisEventBus, EJimuApiEvent } from "./event-bus";
 import { globalErrorMessages, globalStatusCodeErrorMessages } from "./messages";
-import { lingual } from "../lib/lingual";
+import { lingual } from "./lingual";
 
 let emitAboutError = (err: string) => {
   if (err == null) {
@@ -20,7 +20,7 @@ export function showError(
     console.warn("called showError but error is null");
     return;
   }
-  let message = null as string;
+  let message: string;
   if (typeof error === "string") {
     message = error;
   } else if (error instanceof ApiError) {
