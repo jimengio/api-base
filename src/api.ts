@@ -47,13 +47,8 @@ const handleError = (err: ApiError, config?: IJimuApiOption) => {
     JimuApisEventBus.emit(EJimuApiEvent.ErrorUnauthorized);
   }
 
-  /** 处理错误码的消息提示 */
-
-  const errorMessageMap = Object.assign({}, globalErrorMessages, config.errorMessage);
-  const statusCodeErrorMessageMap = Object.assign({}, globalStatusCodeErrorMessages, config.statusCodeErrorMessage);
-
   // errorMessageMap[code] might be set false to prevent showing messages
-  showError(err, errorMessageMap, statusCodeErrorMessageMap);
+  showError(err, config.errorMessage, config.statusCodeErrorMessage);
 
   /** 处理错误码对应的函数回调 */
 

@@ -24,7 +24,7 @@ export interface IJimuApiOption extends AxiosRequestConfig {
   statusCodeErrorHandler?: IErrorHandler;
 }
 
-interface IApiErrorItem {
+export interface IApiErrorItem {
   name: string;
   nameSpace: string;
   type: string;
@@ -65,3 +65,9 @@ export interface ApiCancelTokenSource extends CancelTokenSource {}
 
 /** api cancel token */
 export interface ApiCancelToken extends CancelToken {}
+
+export enum EGoValidator {
+  required = "validator.required",
+  min = "validator.min",
+  // TODO, 需要优化规范完善
+}
