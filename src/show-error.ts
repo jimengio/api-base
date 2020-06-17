@@ -1,6 +1,7 @@
 import { ApiError, IErrorMessages, IApiErrorItem } from "./types";
 import { JimuApisEventBus, EJimuApiEvent } from "./event-bus";
 import { globalErrorMessages, globalStatusCodeErrorMessages } from "./messages";
+import { lingual } from "../lib/lingual";
 
 let emitAboutError = (err: string) => {
   if (err == null) {
@@ -9,7 +10,12 @@ let emitAboutError = (err: string) => {
   JimuApisEventBus.emit(EJimuApiEvent.ErrorMessage, err);
 };
 
-export function showError(error: string | Error | ApiError, customErrorMessage: IErrorMessages, customStatusCodeErrorMessage: IErrorMessages): void {
+export function showError(
+  error: string | Error | ApiError,
+  customErrorMessage: IErrorMessages,
+  customStatusCodeErrorMessage: IErrorMessages,
+  fieldsLocalesDict?: object
+): void {
   if (error == null) {
     console.warn("called showError but error is null");
     return;
@@ -18,7 +24,7 @@ export function showError(error: string | Error | ApiError, customErrorMessage: 
   if (typeof error === "string") {
     message = error;
   } else if (error instanceof ApiError) {
-    message = humanizeError(error, customErrorMessage, customStatusCodeErrorMessage) as string;
+    message = humanizeError(error, customErrorMessage, customStatusCodeErrorMessage, fieldsLocalesDict) as string;
   } else if (error instanceof Error) {
     message = error.toString();
   } else {
@@ -28,7 +34,12 @@ export function showError(error: string | Error | ApiError, customErrorMessage: 
   emitAboutError(message);
 }
 
-export function humanizeError(e: ApiError | Error, customErrorMessage: IErrorMessages, customStatusCodeErrorMessage: IErrorMessages): string {
+export function humanizeError(
+  e: ApiError | Error,
+  customErrorMessage: IErrorMessages,
+  customStatusCodeErrorMessage: IErrorMessages,
+  fieldsLocalesDict?: object
+): string {
   if (e instanceof ApiError) {
     const code = e.code;
     const statusCode = e.originError.response?.status ?? 0;
@@ -57,7 +68,9 @@ export function humanizeError(e: ApiError | Error, customErrorMessage: IErrorMes
 
     // 可能情况, 后端返回字段校验的错误, 部分用到, 需要前端拼接错误信息
     if (e.data?.errorFields && e.data?.errorFields.length > 0) {
-      let concattedMessage = transformMessgeFields(e.data.errorFields);
+      let concattedMessage = transformErrorFieldMessages(e.data.errorFields, fieldsLocalesDict)
+        .map((info) => info.message)
+        .join("\n");
 
       if (e.message) {
         return `${e.message}\n${concattedMessage}`;
@@ -85,9 +98,26 @@ export function humanizeError(e: ApiError | Error, customErrorMessage: IErrorMes
   }
 }
 
-/** TODO */
-let transformMessgeFields = (errorFields: IApiErrorItem[]) => {
-  // TODO, 需要提供转换方式, 生成可读的文案
-  console.warn("TODO transform", errorFields);
-  return errorFields.map((x) => x.message).join("\n");
+/** TODO, 等待后端修复以后删掉 */
+let correctFieldNameFromBackend = (x: string) => {
+  return x[0].toLocaleLowerCase() + x.slice(1);
+};
+
+export let transformErrorFieldMessages = (errorFields: IApiErrorItem[], fieldsLocalesDict: object) => {
+  return errorFields.map((info) => {
+    let text = lingual[`validatorId_${info.messageId}`] as string;
+    let field = correctFieldNameFromBackend(info.name);
+    text = text.replace("$0", fieldsLocalesDict[field] || field);
+    if (text) {
+      info.messageParams.forEach((param, idx) => {
+        if (idx > 0) {
+          text = text.replace(`\$${idx}`, param as string);
+        }
+      });
+      return { field, message: text };
+    } else {
+      console.warn("Unknown messageId", info);
+      return { field, message: info.message };
+    }
+  });
 };

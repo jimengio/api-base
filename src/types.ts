@@ -1,7 +1,6 @@
 import { AxiosError, AxiosRequestConfig, CancelTokenSource, CancelToken } from "axios";
 import { BuiltinApiErrorCode } from "./codes";
-
-export enum ApiErrorMessageId {}
+import { EBackendErrorMessageId } from "./backend-message-id";
 
 export interface IErrorMessages {
   [key: number]: string | false;
@@ -19,6 +18,10 @@ export interface IJimuApiOption extends AxiosRequestConfig {
   isAutoHandleError?: boolean;
   isShowProgressBar?: boolean;
   errorMessage?: IErrorMessages;
+  /** field->文案 映射 */
+  fieldLocaleDict?: { [k in string]: string };
+  /** 获取服务端校验信息 */
+  acceptServerValidations?: (messages: { [k in string]: string }) => void;
   statusCodeErrorMessage?: IErrorMessages;
   errorHandler?: IErrorHandler;
   statusCodeErrorHandler?: IErrorHandler;
@@ -30,7 +33,7 @@ export interface IApiErrorItem {
   type: string;
   value: string;
   message: string;
-  messageId: ApiErrorMessageId;
+  messageId: EBackendErrorMessageId; // 后端定义的规则, 文案自动处理
   messageParams: (string | number | boolean)[];
 }
 
@@ -65,9 +68,3 @@ export interface ApiCancelTokenSource extends CancelTokenSource {}
 
 /** api cancel token */
 export interface ApiCancelToken extends CancelToken {}
-
-export enum EGoValidator {
-  required = "validator.required",
-  min = "validator.min",
-  // TODO, 需要优化规范完善
-}

@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse, Method } from "axios";
 import { ApiError, IJimuApiOption } from "./types";
 import { globalErrorCodeHandler, globalStatusCodeErrorHandler } from "./handlers";
-import { showError } from "./show-error";
+import { showError, transformErrorFieldMessages } from "./show-error";
 import { JimuApisEventBus, EJimuApiEvent } from "./event-bus";
 import { notifyRequestStart, notifyRequestDone } from "./progress";
 
@@ -47,7 +47,19 @@ const handleError = (err: ApiError, config?: IJimuApiOption) => {
   }
 
   // errorMessageMap[code] might be set false to prevent showing messages
-  showError(err, config.errorMessage, config.statusCodeErrorMessage);
+  showError(err, config.errorMessage, config.statusCodeErrorMessage, config.fieldLocaleDict);
+
+  // 尝试生成 key: message 对应的报错信息
+  let generatedMessages = {};
+
+  transformErrorFieldMessages(err.data?.errorFields || [], config.fieldLocaleDict).forEach((info) => {
+    generatedMessages[info.field] = info.message;
+  });
+  if (Object.keys(generatedMessages).length === 0) {
+    // 设置为空方便后续判断
+    generatedMessages = undefined;
+  }
+  config?.acceptServerValidations(generatedMessages);
 
   /** 处理错误码对应的函数回调 */
 
