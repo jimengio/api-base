@@ -1,6 +1,5 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse, Method } from "axios";
 import { ApiError, IJimuApiOption } from "./types";
-import { globalErrorMessages, globalStatusCodeErrorMessages } from "./messages";
 import { globalErrorCodeHandler, globalStatusCodeErrorHandler } from "./handlers";
 import { showError } from "./show-error";
 import { JimuApisEventBus, EJimuApiEvent } from "./event-bus";
@@ -53,22 +52,21 @@ const handleError = (err: ApiError, config?: IJimuApiOption) => {
   /** 处理错误码对应的函数回调 */
 
   const code = err.code;
-  const statusCode = err.originError.response ? err.originError.response.status : 0;
-  let handler: ((err: ApiError) => void) | false;
+  const statusCode = err.originError.response?.status ?? 0;
 
   if (code != null) {
-    handler = config.errorHandler?.[code] || globalErrorCodeHandler[code];
+    let customErrorHandler = config.errorHandler?.[code];
+    if (customErrorHandler) return customErrorHandler(err);
+
+    let defaultErrorHandler = globalErrorCodeHandler[code];
+    if (defaultErrorHandler) return defaultErrorHandler(err);
   }
 
-  if (handler == undefined && statusCode != null) {
-    handler = config.statusCodeErrorHandler?.[statusCode] || globalStatusCodeErrorHandler[statusCode];
-  }
+  let customStatusHandler = config.statusCodeErrorHandler?.[statusCode];
+  if (customStatusHandler) return customStatusHandler(err);
 
-  if (handler !== false) {
-    if (typeof handler === "function") {
-      handler(err);
-    }
-  }
+  let defaultStatusHandler = globalStatusCodeErrorHandler[statusCode];
+  if (defaultStatusHandler) return defaultStatusHandler(err);
 };
 
 const rejectError = (error: AxiosError, config?: IJimuApiOption) => {

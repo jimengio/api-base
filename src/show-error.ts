@@ -40,7 +40,7 @@ export function humanizeError(e: ApiError | Error, customErrorMessage: IErrorMes
     if (customMessageFromCode) return customMessageFromCode;
 
     // 用户配置的 status 对应的错误, 可能是 string | false | undefined
-    let costomMessageFromStatus = statusCode != null ? globalStatusCodeErrorMessages[statusCode] : null;
+    let costomMessageFromStatus = statusCode != null ? customStatusCodeErrorMessage[statusCode] : null;
     if (costomMessageFromStatus) return costomMessageFromStatus;
 
     // 可能情况, 提供了 error 属性(目前使用少)
@@ -55,7 +55,7 @@ export function humanizeError(e: ApiError | Error, customErrorMessage: IErrorMes
 
     // 可能情况, 后端返回字段校验的错误, 部分用到, 需要前端拼接错误信息
     if (e.data?.errorFields && e.data?.errorFields.length > 0) {
-      let concattedMessage = transformMessgeFields(e.data.errorFields, customErrorMessage);
+      let concattedMessage = transformMessgeFields(e.data.errorFields);
 
       if (e.message) {
         return `${e.message}\n${concattedMessage}`;
@@ -82,28 +82,8 @@ export function humanizeError(e: ApiError | Error, customErrorMessage: IErrorMes
 }
 
 /** TODO */
-let transformMessgeFields = (errorFields: IApiErrorItem[], customErrorMessage: IErrorMessages) => {
-  const messageArr = [];
-
-  errorFields.forEach((item) => {
-    const messageId = item.messageId;
-
-    if (messageId) {
-      messageArr.push({
-        field: item.name,
-        namespace: item.nameSpace,
-        message: customErrorMessage[messageId],
-      });
-    } else if (item.message) {
-      messageArr.push({
-        field: item.name,
-        namespace: item.nameSpace,
-        message: item.message,
-      });
-    }
-  });
-
+let transformMessgeFields = (errorFields: IApiErrorItem[]) => {
   // TODO, 需要提供转换方式, 生成可读的文案
   console.warn("TODO transform", errorFields);
-  return errorFields.join("\n");
+  return errorFields.map((x) => x.message).join("\n");
 };
