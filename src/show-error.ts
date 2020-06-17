@@ -37,10 +37,12 @@ export function humanizeError(e: ApiError | Error, customErrorMessage: IErrorMes
 
     // 用户配置的 code 对应的错误, 可能是 string | false | undefined
     let customMessageFromCode = code != null ? customErrorMessage[code] : null;
+    if (customMessageFromCode === false) return null; // false 直接关闭提示
     if (customMessageFromCode) return customMessageFromCode;
 
     // 用户配置的 status 对应的错误, 可能是 string | false | undefined
     let costomMessageFromStatus = statusCode != null ? customStatusCodeErrorMessage[statusCode] : null;
+    if (costomMessageFromStatus === false) return null; // false 直接关闭提示
     if (costomMessageFromStatus) return costomMessageFromStatus;
 
     // 可能情况, 提供了 error 属性(目前使用少)
@@ -66,10 +68,12 @@ export function humanizeError(e: ApiError | Error, customErrorMessage: IErrorMes
 
     // 配置在全局的 code 对应的错误
     let defaultMessageFromCode = code != null ? globalErrorMessages[code] : null;
+    if (defaultMessageFromCode === false) return null; // false 直接关闭提示
     if (defaultMessageFromCode) return defaultMessageFromCode;
 
     // 配置在全局的 status 对应的错误
     let defaultMessageFromStatus = statusCode != null ? globalStatusCodeErrorMessages[statusCode] : null;
+    if (defaultMessageFromStatus === false) return null; // false 直接关闭提示
     if (defaultMessageFromStatus) return defaultMessageFromStatus;
 
     // 默认的错误
