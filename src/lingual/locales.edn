@@ -57,6 +57,111 @@
     "userMobileAlreadyBinded" {"zhCN" "手机号已被绑定", "enUS" "user mobile already binded"}
     "userMobileNeedBind" {"zhCN" "需要绑定手机", "enUS" "user mobile need to bind"}
     "userMobileUsedByOthers" {"zhCN" "手机号已被其他账号使用", "enUS" "user mobile used by others"}
+    "validatorId_alpha" {"zhCN" "{0}的长度必须为{1}个字符", "enUS" "{0} must be {1} in length characters"}
+    "validatorId_alphanum" {"zhCN" "{0}必须为{1}或更大", "enUS" "{0} must be {1} or greater"}
+    "validatorId_ascii" {"zhCN" "{0}的长度必须小于{1}", "enUS" "{0} must be less than {1} in length characters"}
+    "validatorId_cidr" {"zhCN" "{0}必须小于或等于{1}", "enUS" "{0} must be {1} or less"}
+    "validatorId_cidrv4" {"zhCN" "{0}的最大字符数为{1}", "enUS" "{0} must be at maximum {1} in length characters"}
+    "validatorId_cidrv6" {"zhCN" "{0}必须大于当前的日期和时间", "enUS" "{0} must be greater than the current Date & Time"}
+    "validatorId_contains" {"zhCN" "{0}必须是有效的RGB颜色", "enUS" "{0} must be a valid RGB color"}
+    "validatorId_containsany" {"zhCN" "{0}只能包含字母字符", "enUS" "{0} can only contain alphabetic characters"}
+    "validatorId_datauri" {"zhCN" "{0}不能等于{1}", "enUS" "{0} cannot be equal to {1}"}
+    "validatorId_email" {"zhCN" "{0}的长度必须小于{1}", "enUS" "{0} must be less than {1} in length character"}
+    "validatorId_eq" {"zhCN" "{0}必须大于或等于{1}", "enUS" "{0} must be greater than or equal to {1}"}
+    "validatorId_eqcsfield" {"zhCN" "{0}必须是有效的IPv4地址", "enUS" "{0} must be a valid IPv4 address"}
+    "validatorId_eqfield" {"zhCN" "{0}必须小于或等于{1}", "enUS" "{0} must be less than or equal to {1}"}
+    "validatorId_excludes" {"zhCN" "{0}只能包含字母数字字符", "enUS" "{0} can only contain alphanumeric characters"}
+    "validatorId_excludesall" {"zhCN" "{0}必须包含有效的MAC地址", "enUS" "{0} must contain a valid MAC address"}
+    "validatorId_excludesrune" {"zhCN" "{0}必须包含少于{1}个项目", "enUS" "{0} must contain less than {1} items"}
+    "validatorId_gt.datetime" {"zhCN" "{0}必须包含有效的CIDR表示法", "enUS" "{0} must contain a valid CIDR notation"}
+    "validatorId_gt.items-item.one" {"zhCN" "{0}必须是可解析的IPv6地址", "enUS" "{0} must be a resolvable IPv6 address"}
+    "validatorId_gt.items-item.other" {"zhCN" "{0}必须是可解析的IP地址", "enUS" "{0} must be a resolvable IP address"}
+    "validatorId_gt.number" {"zhCN" "{0}必须是有效的ISBN号", "enUS" "{0} must be a valid ISBN number"}
+    "validatorId_gt.string-character.one" {"zhCN" "{0}必须大于或等于当前的日期和时间", "enUS" "{0} must be greater than or equal to the current Date & Time"}
+    "validatorId_gt.string-character.other" {"zhCN" "{0}必须至少包含{1}个项目", "enUS" "{0} must contain at least {1} item"}
+    "validatorId_gtcsfield" {"zhCN" "{0}必须至少包含以下字符“ {1}”之一", "enUS" "{0} must contain at least one of the following characters '{1}'"}
+    "validatorId_gte.datetime" {"zhCN" "{0}必须是有效的IPv4 UDP地址", "enUS" "{0} must be a valid IPv4 UDP address"}
+    "validatorId_gte.items-item.one" {"zhCN" "{0}必须是有效的UUID", "enUS" "{0} must be a valid UUID"}
+    "validatorId_gte.items-item.other" {"zhCN" "{0}必须是有效的版本3 UUID", "enUS" "{0} must be a valid version 3 UUID"}
+    "validatorId_gte.number" {"zhCN" "{0}必须小于或等于{1}", "enUS" "{0} must be less than or equal to {1}"}
+    "validatorId_gte.string-character.one" {"zhCN" "{0}必须是有效的IPv6 TCP地址", "enUS" "{0} must be a valid IPv6 TCP address"}
+    "validatorId_gte.string-character.other" {"zhCN" "{0}必须是有效的IPv4 TCP地址", "enUS" "{0} must be a valid IPv4 TCP address"}
+    "validatorId_gtecsfield" {"zhCN" "{0}必须是有效的十六进制", "enUS" "{0} must be a valid hexadecimal"}
+    "validatorId_gtefield" {"zhCN" "{0}必须大于{1}", "enUS" "{0} must be greater than {1}"}
+    "validatorId_gtfield" {"zhCN" "{0}必须是有效的IPv6 UDP地址", "enUS" "{0} must be a valid IPv6 UDP address"}
+    "validatorId_hexadecimal" {"zhCN" "{0}必须小于或等于{1}", "enUS" "{0} must be {1} or less"}
+    "validatorId_hexcolor" {"zhCN" "{0}必须是有效的十六进制颜色", "enUS" "{0} must be a valid HEX color"}
+    "validatorId_hsl" {"zhCN" "{0}必须包含IPv6地址的有效CIDR表示法", "enUS" "{0} must contain a valid CIDR notation for an IPv6 address"}
+    "validatorId_hsla" {"zhCN" "{0}必须为{1}或更大", "enUS" "{0} must be {1} or greater"}
+    "validatorId_ip" {"zhCN" "{0}必须包含有效的纬度坐标", "enUS" "{0} must contain valid latitude coordinates"}
+    "validatorId_ip4_addr" {"zhCN" "{0}必须是有效的版本5 UUID", "enUS" "{0} must be a valid version 5 UUID"}
+    "validatorId_ip6_addr" {"zhCN" "{0}的长度必须至少为{1}个字符", "enUS" "{0} must be at least {1} in length characters"}
+    "validatorId_ip_addr" {"zhCN" "{0}必须包含{1}个项目", "enUS" "{0} must contain {1} item"}
+    "validatorId_ipv4" {"zhCN" "{0}的长度必须至少为{1}个字符", "enUS" "{0} must be at least {1} in length character"}
+    "validatorId_ipv6" {"zhCN" "{0}必须是有效的HSLA颜色", "enUS" "{0} must be a valid HSLA color"}
+    "validatorId_isbn" {"zhCN" "{0}必须是可解析的UNIX地址", "enUS" "{0} must be a resolvable UNIX address"}
+    "validatorId_isbn10" {"zhCN" "{0}必须是有效的颜色", "enUS" "{0} must be a valid color"}
+    "validatorId_isbn13" {"zhCN" "{0}必须小于{1}", "enUS" "{0} must be less than {1}"}
+    "validatorId_iscolor" {"zhCN" "{0}的最大长度为{1}个字符", "enUS" "{0} must be a maximum of {1} in length character"}
+    "validatorId_latitude" {"zhCN" "{0}必须是有效的RGBA颜色", "enUS" "{0} must be a valid RGBA color"}
+    "validatorId_len.items-item.one" {"zhCN" "{0}必须是有效的数值", "enUS" "{0} must be a valid numeric value"}
+    "validatorId_len.items-item.other" {"zhCN" "{0}必须是有效数字", "enUS" "{0} must be a valid number"}
+    "validatorId_len.number" {"zhCN" "{0}必须包含多字节字符", "enUS" "{0} must contain multibyte characters"}
+    "validatorId_len.string-character.one" {"zhCN" "{0}必须至少包含{1}个项目", "enUS" "{0} must contain at least {1} item"}
+    "validatorId_len.string-character.other" {"zhCN" "{0}的最大长度为{1}个字符", "enUS" "{0} must be a maximum of {1} in length characters"}
+    "validatorId_longitude" {"zhCN" "{0}不能等于{1}", "enUS" "{0} cannot be equal to {1}"}
+    "validatorId_lt.datetime" {"zhCN" "{0}必须包含文字“ {1}”", "enUS" "{0} must contain the text '{1}'"}
+    "validatorId_lt.items-item.one" {"zhCN" "{0}不能包含以下任何字符“ {1}”", "enUS" "{0} cannot contain any of the following characters '{1}'"}
+    "validatorId_lt.items-item.other" {"zhCN" "{0}不能包含以下“ {1}”", "enUS" "{0} cannot contain the following '{1}'"}
+    "validatorId_lt.number" {"zhCN" "{0}不应等于{1}", "enUS" "{0} should not be equal to {1}"}
+    "validatorId_lt.string-character.one" {"zhCN" "{0}必须大于{1}", "enUS" "{0} must be greater than {1}"}
+    "validatorId_lt.string-character.other" {"zhCN" "{0}必须包含超过{1}个项目", "enUS" "{0} must contain more than {1} items"}
+    "validatorId_ltcsfield" {"zhCN" "{0}必须是有效的ISBN-10号", "enUS" "{0} must be a valid ISBN-10 number"}
+    "validatorId_lte.datetime" {"zhCN" "{0}是无效字段", "enUS" "{0} is a invalid field"}
+    "validatorId_lte.items-item.one" {"zhCN" "{0}必须等于{1}", "enUS" "{0} must be equal to {1}"}
+    "validatorId_lte.items-item.other" {"zhCN" "{0}必须包含{1}个项目", "enUS" "{0} must contain {1} items"}
+    "validatorId_lte.number" {"zhCN" "{0}必须是可解析的IPv4地址", "enUS" "{0} must be a resolvable IPv4 address"}
+    "validatorId_lte.string-character.one" {"zhCN" "{0}最多包含{1}个项目", "enUS" "{0} must contain at maximum {1} item"}
+    "validatorId_lte.string-character.other" {"zhCN" "{0}最多包含{1}个项目", "enUS" "{0} must contain at maximum {1} items"}
+    "validatorId_ltecsfield" {"zhCN" "{0}的长度字符必须大于{1}", "enUS" "{0} must be greater than {1} in length character"}
+    "validatorId_ltefield" {"zhCN" "{0}必须包含少于{1}个项目", "enUS" "{0} must contain less than {1} item"}
+    "validatorId_ltfield" {"zhCN" "{0}的长度必须为{1}", "enUS" "{0} must be {1} in length character"}
+    "validatorId_mac" {"zhCN" "{0}必须是有效的IPv6地址", "enUS" "{0} must be a valid IPv6 address"}
+    "validatorId_max.items-item.one" {"zhCN" "{0}必须仅包含可打印的ASCII字符", "enUS" "{0} must contain only printable ascii characters"}
+    "validatorId_max.items-item.other" {"zhCN" "{0}是必填字段", "enUS" "{0} is a required field"}
+    "validatorId_max.number" {"zhCN" "{0}必须是有效的网址", "enUS" "{0} must be a valid URL"}
+    "validatorId_max.string-character.one" {"zhCN" "{0}必须等于{1}", "enUS" "{0} must be equal to {1}"}
+    "validatorId_max.string-character.other" {"zhCN" "{0}不能包含文本“ {1}”", "enUS" "{0} cannot contain the text '{1}'"}
+    "validatorId_min.items-item.one" {"zhCN" "{0}必须等于{1}", "enUS" "{0} must be equal to {1}"}
+    "validatorId_min.items-item.other" {"zhCN" "{0}不等于{1}", "enUS" "{0} is not equal to {1}"}
+    "validatorId_min.number" {"zhCN" "{0}必须大于{1}", "enUS" "{0} must be greater than {1}"}
+    "validatorId_min.string-character.one" {"zhCN" "{0}必须小于或等于当前的日期和时间", "enUS" "{0} must be less than or equal to the current Date & Time"}
+    "validatorId_min.string-character.other" {"zhCN" "{0}必须小于{1}", "enUS" "{0} must be less than {1}"}
+    "validatorId_multibyte" {"zhCN" "{0}必须是有效的电子邮件地址", "enUS" "{0} must be a valid email address"}
+    "validatorId_ne" {"zhCN" "{0}必须小于当前的日期和时间", "enUS" "{0} must be less than the current Date & Time"}
+    "validatorId_necsfield" {"zhCN" "{0}必须大于或等于{1}", "enUS" "{0} must be greater than or equal to {1}"}
+    "validatorId_nefield" {"zhCN" "{0}必须至少包含{1}个项目", "enUS" "{0} must contain at least {1} items"}
+    "validatorId_number" {"zhCN" "{0}必须是有效的UDP地址", "enUS" "{0} must be a valid UDP address"}
+    "validatorId_numeric" {"zhCN" "{0}必须包含IPv4地址的有效CIDR表示法", "enUS" "{0} must contain a valid CIDR notation for an IPv4 address"}
+    "validatorId_printascii" {"zhCN" "{0}必须是有效的TCP地址", "enUS" "{0} must be a valid TCP address"}
+    "validatorId_required" {"zhCN" "{0}必须是有效的SSN号", "enUS" "{0} must be a valid SSN number"}
+    "validatorId_rgb" {"zhCN" "{0}必须小于{1}", "enUS" "{0} must be less than {1}"}
+    "validatorId_rgba" {"zhCN" "{0}必须包含有效的数据URI", "enUS" "{0} must contain a valid Data URI"}
+    "validatorId_ssn" {"zhCN" "{0}最多包含{1}个项目", "enUS" "{0} must contain at maximum {1} items"}
+    "validatorId_tcp4_addr" {"zhCN" "{0}的长度必须至少为{1}个字符", "enUS" "{0} must be at least {1} in length character"}
+    "validatorId_tcp6_addr" {"zhCN" "{0}必须包含超过{1}个项目", "enUS" "{0} must contain more than {1} item"}
+    "validatorId_tcp_addr" {"zhCN" "{0}必须是有效的IP地址", "enUS" "{0} must be a valid IP address"}
+    "validatorId_udp4_addr" {"zhCN" "{0}必须是有效的URI", "enUS" "{0} must be a valid URI"}
+    "validatorId_udp6_addr" {"zhCN" "{0}必须是有效的版本4 UUID", "enUS" "{0} must be a valid version 4 UUID"}
+    "validatorId_udp_addr" {"zhCN" "{0}必须包含有效的经度坐标", "enUS" "{0} must contain a valid longitude coordinates"}
+    "validatorId_unix_addr" {"zhCN" "{0}的长度必须至少为{1}个字符", "enUS" "{0} must be at least {1} in length characters"}
+    "validatorId_uri" {"zhCN" "{0}必须是有效的HSL颜色", "enUS" "{0} must be a valid HSL color"}
+    "validatorId_url" {"zhCN" "{0}必须至少包含{1}个项目", "enUS" "{0} must contain at least {1} items"}
+    "validatorId_username" {"zhCN" "{0}必须仅包含ASCII字符", "enUS" "{0} must contain only ascii characters"}
+    "validatorId_uuid" {"zhCN" "{0}的长度字符必须大于{1}", "enUS" "{0} must be greater than {1} in length characters"}
+    "validatorId_uuid3" {"zhCN" "{0}最多包含{1}个项目", "enUS" "{0} must contain at maximum {1} item"}
+    "validatorId_uuid4" {"zhCN" "{0}的最大字符长度为{1}", "enUS" "{0} must be at maximum {1} in length character"}
+    "validatorId_uuid5" {"zhCN" "{0}必须是有效的ISBN-13数字", "enUS" "{0} must be a valid ISBN-13 number"}
     "workflowNotFound" {"zhCN" "流程未找到", "enUS" "workflow not found"}
   }
   :schema {:version "0.2.x"}

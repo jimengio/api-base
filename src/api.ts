@@ -1,8 +1,7 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse, Method } from "axios";
 import { ApiError, IJimuApiOption } from "./types";
-import { globalErrorMessages, globalStatusCodeErrorMessages } from "./messages";
 import { globalErrorCodeHandler, globalStatusCodeErrorHandler } from "./handlers";
-import { showError } from "./show-error";
+import { showError, transformErrorFieldMessages } from "./show-error";
 import { JimuApisEventBus, EJimuApiEvent } from "./event-bus";
 import { notifyRequestStart, notifyRequestDone } from "./progress";
 
@@ -47,33 +46,39 @@ const handleError = (err: ApiError, config?: IJimuApiOption) => {
     JimuApisEventBus.emit(EJimuApiEvent.ErrorUnauthorized);
   }
 
-  /** 处理错误码的消息提示 */
-
-  const errorMessageMap = Object.assign({}, globalErrorMessages, config.errorMessage);
-  const statusCodeErrorMessageMap = Object.assign({}, globalStatusCodeErrorMessages, config.statusCodeErrorMessage);
-
   // errorMessageMap[code] might be set false to prevent showing messages
-  showError(err, errorMessageMap, statusCodeErrorMessageMap);
+  showError(err, config.errorMessage, config.statusCodeErrorMessage, config.fieldLocaleDict);
+
+  // 尝试生成 key: message 对应的报错信息
+  let generatedMessages: { [x: string]: string } = {};
+
+  transformErrorFieldMessages(err.data?.errorFields || [], config.fieldLocaleDict).forEach((info) => {
+    generatedMessages[info.field] = info.message;
+  });
+  if (Object.keys(generatedMessages).length === 0) {
+    // 设置为空方便后续判断
+    generatedMessages = undefined;
+  }
+  config.acceptServerValidations?.(generatedMessages);
 
   /** 处理错误码对应的函数回调 */
 
   const code = err.code;
-  const statusCode = err.originError.response ? err.originError.response.status : 0;
-  let handler: ((err: ApiError) => void) | false;
+  const statusCode = err.originError.response?.status ?? 0;
 
   if (code != null) {
-    handler = config.errorHandler?.[code] || globalErrorCodeHandler[code];
+    let customErrorHandler = config.errorHandler?.[code];
+    if (customErrorHandler) return customErrorHandler(err);
+
+    let defaultErrorHandler = globalErrorCodeHandler[code];
+    if (defaultErrorHandler) return defaultErrorHandler(err);
   }
 
-  if (handler == undefined && statusCode != null) {
-    handler = config.statusCodeErrorHandler?.[statusCode] || globalStatusCodeErrorHandler[statusCode];
-  }
+  let customStatusHandler = config.statusCodeErrorHandler?.[statusCode];
+  if (customStatusHandler) return customStatusHandler(err);
 
-  if (handler !== false) {
-    if (typeof handler === "function") {
-      handler(err);
-    }
-  }
+  let defaultStatusHandler = globalStatusCodeErrorHandler[statusCode];
+  if (defaultStatusHandler) return defaultStatusHandler(err);
 };
 
 const rejectError = (error: AxiosError, config?: IJimuApiOption) => {
