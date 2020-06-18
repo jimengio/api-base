@@ -50,7 +50,7 @@ const handleError = (err: ApiError, config?: IJimuApiOption) => {
   showError(err, config.errorMessage, config.statusCodeErrorMessage, config.fieldLocaleDict);
 
   // 尝试生成 key: message 对应的报错信息
-  let generatedMessages = {};
+  let generatedMessages: { [x: string]: string } = {};
 
   transformErrorFieldMessages(err.data?.errorFields || [], config.fieldLocaleDict).forEach((info) => {
     generatedMessages[info.field] = info.message;

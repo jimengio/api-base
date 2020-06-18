@@ -24,11 +24,11 @@ export function showError(
   if (typeof error === "string") {
     message = error;
   } else if (error instanceof ApiError) {
-    message = humanizeError(error, customErrorMessage, customStatusCodeErrorMessage, fieldsLocalesDict) as string;
+    message = humanizeError(error, customErrorMessage, customStatusCodeErrorMessage, fieldsLocalesDict);
   } else if (error instanceof Error) {
     message = error.toString();
   } else {
-    return console.error("don't know how to show error", error);
+    return console.error("Unhandled error", error);
   }
 
   emitAboutError(message);
@@ -100,6 +100,7 @@ export function humanizeError(
 
 /** TODO, 等待后端修复以后删掉 */
 let correctFieldNameFromBackend = (x: string) => {
+  if (typeof x !== "string") return x;
   return x[0].toLocaleLowerCase() + x.slice(1);
 };
 
