@@ -47,19 +47,19 @@ export function humanizeError(
     // 从 code 可以设定 false, 这样 message 最后就被关闭了, 这里可能执行 `false || null`
 
     // 用户配置的 code 对应的错误, 可能是 string | false | undefined
-    let customMessageFromCode = code != null ? customErrorMessage[code] : null;
+    let customMessageFromCode = code != null ? customErrorMessage?.[code] : null;
     if (customMessageFromCode === false) return null; // false 直接关闭提示
     if (customMessageFromCode) return customMessageFromCode;
 
     // 用户配置的 status 对应的错误, 可能是 string | false | undefined
-    let costomMessageFromStatus = statusCode != null ? customStatusCodeErrorMessage[statusCode] : null;
+    let costomMessageFromStatus = statusCode != null ? customStatusCodeErrorMessage?.[statusCode] : null;
     if (costomMessageFromStatus === false) return null; // false 直接关闭提示
     if (costomMessageFromStatus) return costomMessageFromStatus;
 
     // 可能情况, 提供了 error 属性(目前使用少)
     if (e.data?.error) {
       const messageId = e.data.error.messageId;
-      let customMessage = messageId ? customErrorMessage[messageId] || globalErrorMessages[messageId] : null; // TODO confirm
+      let customMessage = messageId ? customErrorMessage?.[messageId] || globalErrorMessages[messageId] : null; // TODO confirm
       let messageFromError = customMessage || e.data.error.message || null;
       if (messageFromError) {
         return messageFromError;
