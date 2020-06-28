@@ -12,8 +12,8 @@ let emitAboutError = (err: string) => {
 
 export function showError(
   error: string | Error | ApiError,
-  customErrorMessage: IErrorMessages,
-  customStatusCodeErrorMessage: IErrorMessages,
+  customErrorMessage?: IErrorMessages,
+  customStatusCodeErrorMessage?: IErrorMessages,
   fieldsLocalesDict?: object
 ): void {
   if (error == null) {
