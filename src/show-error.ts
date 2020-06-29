@@ -36,8 +36,8 @@ export function showError(
 
 export function humanizeError(
   e: ApiError | Error,
-  customErrorMessage: IErrorMessages,
-  customStatusCodeErrorMessage: IErrorMessages,
+  customErrorMessage?: IErrorMessages,
+  customStatusCodeErrorMessage?: IErrorMessages,
   fieldsLocalesDict?: object
 ): string {
   if (e instanceof ApiError) {
