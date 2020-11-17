@@ -68,9 +68,19 @@ put({
 通过 `false` 可以关闭特定错误码的报错提示:
 
 ```ts
-errorMessage: {
-  [ApiErrorCode.DBDup]: false,
-},
+{
+  errorMessage: {
+    [ApiErrorCode.DBDup]: false,
+  },
+}
+```
+
+通过 axios 的 `paramsSerializer` 的参数可以对数组格式的 query 参数进行格式化:
+
+```js
+{
+  paramsSerializer: (params) => Qs.stringify(params, {arrayFormat: 'brackets'}),
+}
 ```
 
 ##### 监听 API 特殊的事件:
