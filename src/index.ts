@@ -5,7 +5,7 @@ export { default as NetProgress } from "./component/net-progress";
 
 export { addGlobalErrorMessages, addGlobalStatusCodeErrorMessages } from "./messages";
 
-export { get, post, put, del } from "./api";
+export { get, post, put, del, patch } from "./api";
 
 export { IErrorMessages } from "./types";
 
