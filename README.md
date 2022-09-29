@@ -113,7 +113,7 @@ import { NetProgress } from "@jimengio/api-base";
 
 ### API
 
-- `get` `post` `put` `del`, 基础 HTTP 请求
+- `get` `post` `put` `del` `patch`, 基础 HTTP 请求
 - `changeApisLingual`, `EApisLangKind` 用于修改多语言配置
 - `NetProgress` 渲染网络状态的组件
 - `addGlobalErrorMessages` `addGlobalStatusCodeErrorMessages` 设置错误文案`

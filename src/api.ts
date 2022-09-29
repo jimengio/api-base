@@ -140,6 +140,11 @@ export const put = async <T = any>(option: IJimuApiOption): Promise<T> => {
   return performRequest(option);
 };
 
+export const patch = async <T = any>(option: IJimuApiOption): Promise<T> => {
+  option.method = "PATCH";
+  return performRequest(option);
+};
+
 export const del = async <T = any>(option: IJimuApiOption): Promise<T> => {
   option.method = "DELETE";
   return performRequest(option);
