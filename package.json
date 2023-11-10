@@ -27,7 +27,7 @@
     "react": "^16.8.6"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^1.6.0",
     "eventemitter3": "^4.0.4",
     "lodash-es": "^4.17.15"
   }
