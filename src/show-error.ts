@@ -84,13 +84,13 @@ export function humanizeError(
     if (defaultMessageFromCode === false) return null; // false 直接关闭提示
     if (defaultMessageFromCode) return defaultMessageFromCode;
 
+    // 默认的错误
+    if (e.message) return e.message;
+
     // 配置在全局的 status 对应的错误
     let defaultMessageFromStatus = statusCode != null ? globalStatusCodeErrorMessages[statusCode] : null;
     if (defaultMessageFromStatus === false) return null; // false 直接关闭提示
     if (defaultMessageFromStatus) return defaultMessageFromStatus;
-
-    // 默认的错误
-    if (e.message) return e.message;
   }
 
   if (e instanceof Error) {
